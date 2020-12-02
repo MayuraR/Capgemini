@@ -7,12 +7,10 @@ var roomSchema = mongoose.Schema( {
     },
     reserved: [
         {
-            from: String,
-            to: String
+            from: Date,
+            to: Date
         }
     ]
 });
 
-const Room = mongoose.model('Room', roomSchema);
-
-module.exports = Room;
+module.exports = roomSchema;

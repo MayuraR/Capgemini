@@ -34,6 +34,4 @@ var roomReservationSchema = mongoose.Schema( {
     }
 });
 
-const roomReservation = mongoose.model('roomReservation', roomReservationSchema);
-
-module.exports = roomReservation;
+module.exports = roomReservationSchema ;
