@@ -1,7 +1,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var cookieParser = require('cookie-parser');
+var { requireAuth } = require('../middleware/authMiddleware')
 
 app = express();
+app.use(cookieParser())
 
 mongoose.Promise = global.Promise;
 
@@ -18,7 +21,7 @@ const Staff = require('../Models/Staff')
 
 //Get staff members by department
 //http://localhost:3700/staff?department=kitchen
-app.get('/staff', (req, res) =>{
+app.get('/staff',  (req, res) =>{
     const matchItem = req.query.department
     Staff.find({ department : matchItem})
         .then((staff) => res.send(staff))
@@ -26,21 +29,21 @@ app.get('/staff', (req, res) =>{
 })
 
 //Get member by id
-app.get('/staff/:id', (req, res) =>{
+app.get('/staff/:id',requireAuth,(req, res) =>{
     Staff.find({ _id : req.params.id})
         .then((staff) => res.send(staff))
         .catch((err) => console.log(err))
 })
 
 //get salary of all members in a department
-app.get('/salary/:department', (req, res) => {
+app.get('/salary/:department', requireAuth, (req, res) => {
     Staff.find({ department : req.params.department }).select(["name", "salary"])
         .then((staff) => res.send(staff))
         .catch((err) => console.log(err))
 })
 
 //get total salary given for all members in a department
-app.get('/departmentSalary/:department', (req, res) => {
+app.get('/departmentSalary/:department',requireAuth,  (req, res) => {
     sum = 0
     Staff.find({ department : req.params.department })
     .then((members) => {
@@ -52,7 +55,7 @@ app.get('/departmentSalary/:department', (req, res) => {
 })
 
 //add a member(POST)
-app.post('/staff', (req, res) =>{
+app.post('/staff',requireAuth, (req, res) =>{
     (new Staff ( { 'name' : req.body.name, 
                     'department' : req.body.department, 
                     'gender' : req.body.gender, 
@@ -67,7 +70,7 @@ app.post('/staff', (req, res) =>{
 })
 
 //update (PATCH)
-app.patch('/staff/:id', (req, res) =>{
+app.patch('/staff/:id', requireAuth, (req, res) =>{
     Staff.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
         .then((staff) => {
             console.log('staff updated');
@@ -79,7 +82,7 @@ app.patch('/staff/:id', (req, res) =>{
 })
 
 //deleting a member
-app.delete('/staff/:id', (req, res) =>{
+app.delete('/staff/:id', requireAuth, (req, res) =>{
     Staff.findOneAndDelete({  _id : req.params.id })
         .then((staff) => res.send("staff member deleted"))
         .catch((err) => console.log(err))

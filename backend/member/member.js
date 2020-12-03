@@ -1,7 +1,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var cookieParser = require('cookie-parser')
+var { requireAuth } = require('../middleware/authMiddleware')
 
 app = express();
+app.use(cookieParser())
 
 mongoose.Promise = global.Promise;
 
@@ -17,21 +20,21 @@ const Member = require('../Models/Member')
 //methods: ADD, GET, UPDATE
 
 //Get all members
-app.get('/members', (req, res) =>{
+app.get('/members', requireAuth, (req, res) =>{
     Member.find({})
         .then((member) => res.send(member))
         .catch((err) => console.log(err))
 })
 
 //Get member by id
-app.get('/members/:id', (req, res) =>{
+app.get('/members/:id',requireAuth, (req, res) =>{
     Member.find({ _id : req.params.id})
         .then((member) => res.send(member))
         .catch((err) => console.log(err))
 })
 
 //add a member(POST)
-app.post('/members', (req, res) =>{
+app.post('/members',requireAuth, (req, res) =>{
     (new Member ( { 'name' : req.body.name, 'gender' : req.body.gender, 'contact' : req.body.contact, 'email' : req.body.email}))
         .save()
         .then((member) => res.send(member))
@@ -39,7 +42,7 @@ app.post('/members', (req, res) =>{
 })
 
 //update (PATCH)
-app.patch('/members/:id', (req, res) =>{
+app.patch('/members/:id',requireAuth, (req, res) =>{
     Member.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
         .then((member) => {
             console.log('member updated');

@@ -19,6 +19,4 @@ var hallReservationSchema = mongoose.Schema( {
     }
 });
 
-const hallReservation = mongoose.model('hallReservation', hallReservationSchema);
-
-module.exports = hallReservation;
+module.exports = hallReservationSchema;
