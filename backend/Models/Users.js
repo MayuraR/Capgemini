@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
-    lowercase: true,
+    lowercase: true, 
   },
   role: {
     type: String,

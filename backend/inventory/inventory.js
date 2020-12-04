@@ -1,7 +1,9 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
-var { requireAuth } = require('../middleware/authMiddleware')
+var { requireAuth } = require('../middleware/authentication')
+var { authRole } = require('../middleware/authorization')
+
 
 app = express();
 app.use(express.json())
@@ -20,7 +22,7 @@ const Inventory = require('../Models/Inventory')
 
 //Get all inventory
 //http://localhost:3600/inventory?item=potato&date=2020-12-12
-app.get('/inventory', requireAuth, (req, res) =>{
+app.get('/inventory',  requireAuth, authRole(['Manager','Owner']), (req, res) =>{
     const matchItem = req.query.item
     const matchDate = Date.parse(req.query.date)
     Inventory.find({ item : matchItem, date : matchDate})
@@ -29,7 +31,7 @@ app.get('/inventory', requireAuth, (req, res) =>{
 })
 
 //Get inventory by item
-app.get('/inventory/:item',requireAuth, (req, res) =>{
+app.get('/inventory/:item',requireAuth, authRole(['Manager','Owner']), (req, res) =>{
     Inventory.find({ item : req.params.item})
         .then((inventory) => res.send(inventory))
         .catch((err) => console.log(err))
@@ -37,7 +39,7 @@ app.get('/inventory/:item',requireAuth, (req, res) =>{
 
 
 //add an inventory (POST)
-app.post('/inventory',requireAuth, (req, res) =>{
+app.post('/inventory',requireAuth,authRole(['Manager','Owner']), (req, res) =>{
     (new Inventory ( { 'date' : req.body.date, 'area' : req.body.area, 'item' : req.body.item, 'quantity' : req.body.quantity}))
         .save()
         .then((inventory) => res.send(inventory))
@@ -45,7 +47,7 @@ app.post('/inventory',requireAuth, (req, res) =>{
 })
 
 //update a reservation (PATCH)
-app.patch('/inventory/:id',requireAuth, (req, res) =>{
+app.patch('/inventory/:id',requireAuth, authRole(['Manager','Owner']), (req, res) =>{
     Inventory.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
         .then((inventory) => {
             console.log("Inventory updated!")
@@ -58,7 +60,7 @@ app.patch('/inventory/:id',requireAuth, (req, res) =>{
 })
 
 //deleting an inventory
-app.delete('/inventory/:id',requireAuth, (req, res) =>{
+app.delete('/inventory/:id',requireAuth, authRole(['Manager','Owner']), (req, res) =>{
     Inventory.findOneAndDelete({  _id : req.params.id })
         .then((reservation) => res.send("inventory deleted"))
         .catch((err) => console.log(err))

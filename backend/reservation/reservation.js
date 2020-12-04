@@ -1,7 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
-var { requireAuth } = require('../middleware/authMiddleware')
+var { requireAuth } = require('../middleware/authentication')
+var { authRole } = require('../middleware/authorization')
 
 app = express();
 app.use(express.json());
@@ -27,14 +28,14 @@ var hallReservation = hallReservation.model('hallReservation', hallReservationSc
 //methods: ADD, GET, UPDATE, DELETE
 
 //Get all reservation
-app.get('/room', requireAuth, (req, res) =>{
+app.get('/room', requireAuth, authRole('Manager', 'Owner'), (req, res) =>{
     roomReservation.find({})
         .then((member) => res.send(member))
         .catch((err) => console.log(err))
 })
 
 //Get reservation by id
-app.get('/room/:id', requireAuth,(req, res) =>{
+app.get('/room/:id', requireAuth, authRole([]), (req, res) =>{
     roomReservation.find({ _id : req.params.id})
         .then((reservation) => res.send(reservation))
         .catch((err) => console.log(err))
@@ -42,7 +43,7 @@ app.get('/room/:id', requireAuth,(req, res) =>{
 
 //find room available
 //http://localhost:3500/available?start=2020-12-09&&end=2020-12-11
-app.get('/available',requireAuth, (req, res) =>{
+app.get('/available',requireAuth, authRole([]), (req, res) =>{
     const matchStart = new Date(req.query.start)
     const matchEnd = new Date(req.query.end)
     available = [] 
@@ -75,7 +76,7 @@ app.get('/available',requireAuth, (req, res) =>{
 })
 
 //add a member(POST)
-app.post('/room',requireAuth, (req, res) =>{
+app.post('/room',requireAuth, authRole([]), (req, res) =>{
     (new roomReservation ( {
         "membershipId" : req.body.membershipId, 
         "noOfChildren" : req.body.noOfChildren,
@@ -99,7 +100,7 @@ app.post('/room',requireAuth, (req, res) =>{
         })
 
 //update (PATCH)
-app.patch('/room/:id',requireAuth, (req, res) => {
+app.patch('/room/:id',requireAuth, authRole('Manager', 'Owner'), (req, res) => {
     let oldCheckIn; 
     let index
     roomReservation.findOneAndUpdate( {_id : req.params.id}, req.body)
@@ -131,7 +132,7 @@ app.patch('/room/:id',requireAuth, (req, res) => {
 })
 
 //delete a room reservation
-app.delete('/room/:id', requireAuth, (req,res) =>{
+app.delete('/room/:id', requireAuth, authRole('Manager', 'Owner'),  (req,res) =>{
     
     roomReservation.findByIdAndDelete( {_id : req.params.id} )
         .then((reservation) => {     
@@ -162,7 +163,7 @@ app.delete('/room/:id', requireAuth, (req,res) =>{
     
 })
 
-app.post('/addRoom',requireAuth, (req, res) =>{
+app.post('/addRoom',requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
     
     (new room ({
         "roomNo" : req.body.roomNo,
@@ -175,21 +176,21 @@ app.post('/addRoom',requireAuth, (req, res) =>{
 //HALL RESERVATION
 
 //Get all hall reservations
-app.get('/hall',requireAuth, (req, res) =>{
+app.get('/hall',requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
     hallReservation.find({})
         .then((hall) => res.send(hall))
         .catch((err) => console.log(err))
 })
 
 //Get hall reservation by date
-app.get('/hall/:date', requireAuth, (req, res) =>{
+app.get('/hall/:date', requireAuth, authRole([]), (req, res) =>{
     hallReservation.find({ dateOfReservation : Date.parse(req.params.date)})
         .then((reservation) => res.send(reservation))
         .catch((err) => console.log(err))
 })
 
 //add a reservation
-app.post('/hall', requireAuth, (req, res) =>{
+app.post('/hall', requireAuth, authRole([]), (req, res) =>{
     (new hallReservation ( { 'membershipId' : req.body.membershipId, 'dateOfReservation' : req.body.dateOfReservation, 'verificationDoc' : req.body.verificationDoc, 'purpose' : req.body.purpose}))
         .save()
         .then((reservation) => res.send(reservation))
@@ -197,7 +198,7 @@ app.post('/hall', requireAuth, (req, res) =>{
 })
 
 //update a reservation (PATCH)
-app.patch('/hall/:id', requireAuth, (req, res) =>{
+app.patch('/hall/:id', requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
     hallReservation.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
         .then((reservation) => {
             console.log('reservation updated');
@@ -209,7 +210,7 @@ app.patch('/hall/:id', requireAuth, (req, res) =>{
 })
 
 //deleting a reservation 
-app.delete('/hall/:id',requireAuth, (req, res) =>{
+app.delete('/hall/:id',requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
     hallReservation.findOneAndDelete({  _id : req.params.id })
         .then((reservation) => res.send("Reservation deleted"))
         .catch((err) => console.log(err))

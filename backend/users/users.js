@@ -2,6 +2,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken');
+var { requireAuth } = require('../middleware/authentication')
+var { authRole } = require('../middleware/authorization')
 
 app = express();
 app.use(cookieParser())
@@ -19,8 +21,8 @@ const User = require('../Models/Users')
 
 // create json web token
 const maxAge = 24 * 60 * 60;
-const createToken = (id) => {
-  return jwt.sign({ id }, 'net ninja secret', {
+const createToken = (user) => {
+  return jwt.sign({ id: user._id, role: user.role }, 'net ninja secret', {
     expiresIn: maxAge
   });
 };
@@ -37,7 +39,7 @@ app.post('/login', async (req, res) =>{
 
     try {
         const user = await User.login(userId, password);
-        const token = createToken(user._id);
+        const token = createToken(user);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(200).json({ user: user._id , userId: user.userId});
       } 
@@ -47,15 +49,10 @@ app.post('/login', async (req, res) =>{
 })
 
 //post request for signup
-app.post('/signup', (req, res) =>{
+app.post('/signup',requireAuth, authRole('Owner'), (req, res) =>{
     const {userId, role, password} = req.body
     new User ({userId, role, password}).save()
-        .then((user) => {
-            const token = createToken(user._id);
-            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-            //remove the below line
-            res.send(`${user._id}, ${user.userId}`)
-        })
+        .then(res.send("Created"))
         .catch( err => console.log(err))
 
 })

@@ -1,9 +1,5 @@
-// var express = require('express');
 const jwt = require('jsonwebtoken');
-// var cookieParser = require('cookie-parser');
-
-//app = express();
-// app.use(cookieParser())
+let r = '';
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -15,7 +11,8 @@ const requireAuth = (req, res, next) => {
         console.log(err.message);
         res.redirect('http://localhost:4000/login');
       } else {
-        console.log(decodedToken);
+        console.log(decodedToken.role);
+        r = decodedToken.role
         next();
       }
     });
@@ -24,4 +21,8 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-module.exports = { requireAuth };
+const role = () => {
+  return r;
+}
+
+module.exports = { requireAuth, role };
