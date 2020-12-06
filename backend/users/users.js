@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser')
+var cors = require("cors");
 const jwt = require('jsonwebtoken');
 var { requireAuth } = require('../middleware/authentication')
 var { authRole } = require('../middleware/authorization')
@@ -8,6 +9,7 @@ var { authRole } = require('../middleware/authorization')
 app = express();
 app.use(cookieParser())
 app.use(express.json())
+app.use(cors());
 
 mongoose.Promise = global.Promise;
 
@@ -41,10 +43,10 @@ app.post('/login', async (req, res) =>{
         const user = await User.login(userId, password);
         const token = createToken(user);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json({ user: user._id , userId: user.userId});
+        res.status(200).json({token});
       } 
       catch (err) {
-        res.send(err.message)
+        res.status(401).json(err.message)
       }
 })
 

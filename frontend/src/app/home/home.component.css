@@ -1,0 +1,18 @@
+.card {
+    width: 18rem;
+    background-color: antiquewhite;
+    opacity: 0.8;
+    color: #333333;
+}a{
+    text-decoration: none;
+    text-align: center;
+    color: #333333;
+}
+a:hover{
+    background-color: #333333;
+    color: antiquewhite;
+}
+.card-img-top{
+    width: 254px;
+    height: 140px;
+}
