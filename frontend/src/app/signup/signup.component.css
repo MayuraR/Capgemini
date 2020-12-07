@@ -1,0 +1,30 @@
+.card{
+    background-color: transparent;
+    padding: 1.5rem 2rem;
+}
+input{
+    background: transparent;
+    border-radius: 2rem;
+    border-color: wheat;
+    color: wheat;
+}
+.wrapper {
+    text-align: center;
+}
+.card-title{
+    color: #333333;
+    background-color: wheat;
+}
+.btn{
+    background-color:transparent;
+    border: 2px solid wheat;
+    border-radius: 20px;
+    color: wheat;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+label{
+    font-size: 1.2em;
+}

@@ -10,6 +10,7 @@ export class AuthserviceService{
 
   private _loginUrl = "http://localhost:4000/login";
   private _logOutUrl = "http://localhost:4000/logout";
+  private _signUpUrl = "http://localhost:4000/signup";
   
   constructor( private http : HttpClient, private router : Router) { }
 
@@ -26,7 +27,14 @@ export class AuthserviceService{
     this.router.navigate(['/login']);
     this.http.get(this._logOutUrl);
     localStorage.removeItem('token')
+  }
 
+  signUpUser(user:any){
+    return this.http.post<any>(this._signUpUrl, user)
+  }
+
+  getToken(){
+    return localStorage.getItem('token')
   }
 }
 
