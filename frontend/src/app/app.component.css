@@ -23,7 +23,7 @@ li{
 a{
     text-decoration: none;
     text-align: center;
-    color: white;
+    color: antiquewhite;
 }
 a:hover{
     background-color: rgb(240, 236, 184);

@@ -24,9 +24,10 @@ export class AuthserviceService{
   }
 
   logOut(){
+    localStorage.removeItem('token')
     this.router.navigate(['/login']);
     this.http.get(this._logOutUrl);
-    localStorage.removeItem('token')
+    
   }
 
   signUpUser(user:any){
@@ -34,6 +35,7 @@ export class AuthserviceService{
   }
 
   getToken(){
+    console.log(`this is the getToken() in auth setvice ${localStorage.getItem('token')}`)
     return localStorage.getItem('token')
   }
 }

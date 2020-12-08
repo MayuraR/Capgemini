@@ -7,12 +7,12 @@ import { AuthserviceService } from './authservice.service'
 })
 export class TokenInterceptorService implements HttpInterceptor{
 
-  constructor(private injector: Injector){}
+  constructor(private injector: Injector, private _auth : AuthserviceService){}
   intercept(req, next) {
     
-    let token = localStorage.getItem('token')
+    let token = this._auth.getToken()
 
-    if(token){
+   if(token){
       let tokenizedReq = req.clone(
       {
         headers: req.headers.set('Authorization', 'bearer ' + token)

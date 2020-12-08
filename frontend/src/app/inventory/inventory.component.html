@@ -1,0 +1,248 @@
+<h3 class="text-center display-3 py-5">INVENTORY</h3>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--get inventory -->
+        <div class="col-md-6 col-lg-3 py-5 px-5">
+            <div class="card py-3 px-3">
+              
+                <div class="card-body">
+                  <h5 class="card-title py-3 px-3"> GET INVENTORY</h5>
+                  <p class="card-text py-3 px-3">Enter the item to get inventory
+                    <br> <br>
+                    <a (click)="enableGet()" class="stretched-link">Click here</a>
+                  </p>
+                </div>
+            </div>
+        </div>
+
+        <!--update inventory-->
+        <div class="col-md-6 col-lg-3 py-5 px-5">
+            <div class="card py-3 px-3">
+              
+                <div class="card-body">
+                  <h5 class="card-title py-3 px-3">UPDATE INVENTORY</h5>
+                  <p class="card-text py-3 px-3">Update inventory details
+                    <br> <br>
+                    <a (click)="enableUpdate()" class="stretched-link">Click here</a>
+                  </p>
+                </div>
+            </div>
+        </div>
+
+        <!--add inventory-->
+        <div class="col-md-6 col-lg-3 py-5 px-5">
+            <div class="card py-3 px-3">
+              
+                <div class="card-body">
+                  <h5 class="card-title py-3 px-3">ADD INVENTORY</h5>
+                  <p class="card-text py-3 px-3">Add inventory details
+                    <br> <br>
+                    <a (click)="enableAdd()" class="stretched-link">Click here</a>
+                  </p>
+                </div>
+            </div>
+        </div>
+        
+        <!--delete inventory-->
+        <div class="col-md-6 col-lg-3 py-5 px-5">
+            <div class="card py-3 px-3">
+              
+                <div class="card-body">
+                  <h5 class="card-title py-3 px-3">DELETE INVENTORY</h5>
+                  <p class="card-text py-3 px-3">Delete inventory details
+                    <br> <br>
+                    <a (click)="enableDelete()" class="stretched-link">Click here</a>
+                  </p>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+<!--get inventory -->
+<div  *ngIf = "Get">
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formInventory"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">GET INVENTORY</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="uname1">Enter item:</label>
+                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="item" placeholder="Enter item to be found" required>
+                    <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+                  </div>
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "getInventory()">Find</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+</div>
+
+
+<!--update inventory -->
+<div  *ngIf = "Update">
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formInventory"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">UPDATE INVENTORY</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                    <div class="form-group ">
+                        <label for="id">Enter id:</label>
+                        <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.id" name="id" placeholder="Enter id" required>
+                        <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
+                    </div>
+                  <div class="form-group ">
+                    <label for="date">Enter date:</label>
+                    <input type="text" #date=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.date" name="date" placeholder="YYYY/MM/DD" required>
+                    <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Item is required</small>
+                  </div>
+                  <div class="form-group ">
+                    <label for="area">Enter area:</label>
+                    <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.area" name="area" placeholder="Area" required>
+                    <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
+                  </div>
+                  <div class="form-group ">
+                    <label for="item">Enter item:</label>
+                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="item" placeholder="Item" required>
+                    <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+                  </div>
+                  <div class="form-group ">
+                    <label for="quantity">Enter quantity:</label>
+                    <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.quantity" name="quantity" placeholder="quantity" required>
+                    <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
+                  </div>
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "updateInventory()">Update</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+</div>
+
+
+<!--add inventory -->
+<div  *ngIf = "Add">
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formInventory"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">ADD INVENTORY</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="date">Enter date:</label>
+                    <input type="text" #date=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.date" name="date" placeholder="YYYY/MM/DD" required>
+                    <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Item is required</small>
+                  </div>
+                  <div class="form-group ">
+                    <label for="area">Enter area:</label>
+                    <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.area" name="area" placeholder="Area" required>
+                    <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
+                  </div>
+                  <div class="form-group ">
+                    <label for="item">Enter item:</label>
+                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="item" placeholder="Item" required>
+                    <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+                  </div>
+                  <div class="form-group ">
+                    <label for="quantity">Enter quantity:</label>
+                    <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.quantity" name="quantity" placeholder="quantity" required>
+                    <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
+                  </div>
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "addInventory()">ADD</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+</div>
+
+
+<!--delete inventory -->
+<div  *ngIf = "Delete">
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formInventory"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">DELETE INVENTORY</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="id">Enter ID:</label>
+                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="id" placeholder="Enter ID of item to be deleted" required>
+                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
+                  </div>
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "deleteInventory()">Find</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+</div>
+

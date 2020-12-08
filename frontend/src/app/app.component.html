@@ -3,7 +3,7 @@
     <h3> HOTEL NAME</h3>
     <ul class="justify-content-right">
         <li><a *ngIf = '!_auth.loggedIn()' routerLink ='/login'>Login</a></li>
-        <li><a *ngIf = '!_auth.loggedIn()' routerLink ='/home'>Home</a></li>
+        <li><a routerLink ='/home'>Home</a></li>
         <li><a *ngIf = '_auth.loggedIn()' (click) = "_auth.logOut()">Logout</a></li>
       </ul>
 </nav>

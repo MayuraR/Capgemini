@@ -46,7 +46,7 @@ app.post('/inventory',requireAuth,authRole(['Manager','Owner']), (req, res) =>{
         .catch((err) => console.log(err))
 })
 
-//update a reservation (PATCH)
+//update an inventory (PATCH)
 app.patch('/inventory/:id',requireAuth, authRole(['Manager','Owner']), (req, res) =>{
     Inventory.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
         .then((inventory) => {

@@ -1,0 +1,49 @@
+.details .card{
+    background-color: transparent;
+    padding: 1.5rem 2rem;
+}
+.details input{
+    background: transparent;
+    border-radius: 2rem;
+    border-color: wheat;
+    color: wheat;
+}
+.details .wrapper {
+    text-align: center;
+}
+.details .card-title{
+    color: #333333;
+    background-color: wheat;
+}
+.details .btn{
+    background-color:transparent;
+    border: 2px solid wheat;
+    border-radius: 20px;
+    color: wheat;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+.details label{
+    color: antiquewhite;
+    font-size: 1.2em;
+}
+.details .card{
+    width: auto;
+}
+.card {
+    width: 18rem;
+    background-color: antiquewhite;
+    opacity: 0.8;
+    color: #333333;
+}
+a{
+    text-decoration: none;
+    text-align: center;
+    color: #333333;
+}
+a:hover{
+    font-weight: bold;
+    cursor: pointer;
+}

@@ -1,0 +1,190 @@
+<h3 class="text-center display-3 py-5">FINANCE</h3>
+
+<div class="container">
+    <div class="row">
+        <!--get bill -->
+        <div class="col-md-6 col-lg-4 py-5">
+            <div class="card py-3 px-3">
+              
+                <div class="card-body">
+                  <h5 class="card-title py-3 px-3"> GET BILL</h5>
+                  <p class="card-text py-3 px-3">Enter the customer ID to get all bills.
+                    <br> <br>
+                    <a (click)="enableGet()" class="stretched-link">Click here</a>
+                  </p>
+                </div>
+            </div>
+        </div>
+
+        <!--add bill-->
+        <div class="col-md-6 col-lg-4 py-5">
+            <div class="card py-3 px-3">
+              
+                <div class="card-body">
+                  <h5 class="card-title py-3 px-3">ADD BILL</h5>
+                  <p class="card-text py-3 px-3">Add a bill.
+                    <br> <br> <br>
+                    <a (click)="enableAdd()" class="stretched-link">Click here</a>
+                  </p>
+                </div>
+            </div>
+        </div>
+
+        <!--get income-->
+        <div class="col-md-6 col-lg-4 py-5">
+            <div class="card py-3 px-3">
+              
+                <div class="card-body">
+                  <h5 class="card-title py-3 px-3">GET INCOME</h5>
+                  <p class="card-text py-3 px-3">Get income for the given time period.
+                    <br> <br>
+                    <a (click)="enableIncome()" class="stretched-link">Click here</a>
+                  </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!--get bills -->
+<div  *ngIf = "Get">
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formFinance"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">GET BILL</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="id">Enter customer ID:</label>
+                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="billData.item" name="id" placeholder="Enter customer ID" required>
+                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">Item is required</small>
+                  </div>
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "getBill()">Find</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+</div>
+
+<!--add bill -->
+<div  *ngIf = "Add">
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formInventory"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">ADD BILL</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="id">Enter customer ID:</label>
+                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="billData.memberId" name="id" placeholder="Enter customer ID" required>
+                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="date">Enter date:</label>
+                    <input type="date" #date=ngModel class="form-control col-xs-4" [(ngModel)]="billData.date" name="date" placeholder="YYYY/MM/DD" required>
+                    <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Date is required</small>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="amount">Enter amount:</label>
+                    <input type="number" #amount=ngModel class="form-control col-xs-4" [(ngModel)]="billData.amount" name="id" placeholder="Enter amount" required>
+                    <small [class.d-none] = "amount.untouched || amount.valid" class="text-danger">amount is required</small>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="gst">Enter gst:</label>
+                    <input type="number" #gst=ngModel class="form-control col-xs-4" [(ngModel)]="billData.gst" name="id" placeholder="Enter gst" required>
+                    <small [class.d-none] = "gst.untouched || gst.valid" class="text-danger">GST is required</small>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="gt">Enter customer ID:</label>
+                    <input type="text" #gt=ngModel class="form-control col-xs-4" [(ngModel)]="billData.grandTotal" name="gt" placeholder="Enter grand total" required>
+                    <small [class.d-none] = "gt.untouched || gt.valid" class="text-danger">ID is required</small>
+                  </div>
+
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "addBill()">ADD</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+</div>
+
+<!--get income -->
+<div  *ngIf = "Income">
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formFinance"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">GET INCOME</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="from">From:</label>
+                    <input type="date" #from=ngModel class="form-control col-xs-4" [(ngModel)]="income.from" name="from" placeholder="" required>
+                    <small [class.d-none] = "from.untouched || from.valid" class="text-danger">Date is required</small>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="to">To:</label>
+                    <input type="date" #to=ngModel class="form-control col-xs-4" [(ngModel)]="income.to" name="id" placeholder="" required>
+                    <small [class.d-none] = "to.untouched || to.valid" class="text-danger">Date is required</small>
+                  </div>
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "getIncome()">Get Income</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+</div>

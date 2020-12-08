@@ -9,14 +9,26 @@ import { HomeComponent } from './home/home.component';
 import { AuthserviceService } from './authservice.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './token-interceptor.service'
+import { TokenInterceptorService } from './token-interceptor.service';
+import { InventoryComponent } from './inventory/inventory.component';
+import { FinanceComponent } from './finance/finance.component';
+import { StaffComponent } from './staff/staff.component';
+import { MembersComponent } from './members/members.component';
+import { HallreservationComponent } from './hallreservation/hallreservation.component';
+import { RoomreservationComponent } from './roomreservation/roomreservation.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    InventoryComponent,
+    FinanceComponent,
+    StaffComponent,
+    MembersComponent,
+    HallreservationComponent,
+    RoomreservationComponent
   ],
   imports: [
     BrowserModule,
