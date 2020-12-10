@@ -1,18 +1,1 @@
-<div class="wrapper">
-<nav class="navbar flex-column flex-md-row py-3 px-3">
-    <h3> HOTEL NAME</h3>
-    <ul class="justify-content-right">
-        <li><a *ngIf = '!_auth.loggedIn()' routerLink ='/login'>Login</a></li>
-        <li><a routerLink ='/home'>Home</a></li>
-        <li><a *ngIf = '_auth.loggedIn()' (click) = "_auth.logOut()">Logout</a></li>
-      </ul>
-</nav>
-<div class="container">
-
-  <div class="jumbotron justify-content-center ">
-      <h1 class="display-3">Hotel Management System</h1>
-  </div>
-
-</div>
 <router-outlet> </router-outlet>
-</div>

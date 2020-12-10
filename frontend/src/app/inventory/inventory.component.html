@@ -1,16 +1,23 @@
-<h3 class="text-center display-3 py-5">INVENTORY</h3>
+<app-navbar></app-navbar>
+<div class="container">
+
+  <div class="jumbotron justify-content-center ">
+      <h1 class="display-3">Inventory</h1>
+  </div>
+
+</div>
 
 <div class="container-fluid">
     <div class="row">
         <!--get inventory -->
         <div class="col-md-6 col-lg-3 py-5 px-5">
-            <div class="card py-3 px-3">
+            <div class="card py-3 px-3 cardHover" >
               
                 <div class="card-body">
                   <h5 class="card-title py-3 px-3"> GET INVENTORY</h5>
                   <p class="card-text py-3 px-3">Enter the item to get inventory
                     <br> <br>
-                    <a (click)="enableGet()" class="stretched-link">Click here</a>
+                    <a (click)="enableGet()"  class="stretched-link">Click here</a>
                   </p>
                 </div>
             </div>
@@ -18,7 +25,7 @@
 
         <!--update inventory-->
         <div class="col-md-6 col-lg-3 py-5 px-5">
-            <div class="card py-3 px-3">
+            <div class="card py-3 px-3 cardHover">
               
                 <div class="card-body">
                   <h5 class="card-title py-3 px-3">UPDATE INVENTORY</h5>
@@ -32,7 +39,7 @@
 
         <!--add inventory-->
         <div class="col-md-6 col-lg-3 py-5 px-5">
-            <div class="card py-3 px-3">
+            <div class="card py-3 px-3 cardHover">
               
                 <div class="card-body">
                   <h5 class="card-title py-3 px-3">ADD INVENTORY</h5>
@@ -45,12 +52,12 @@
         </div>
         
         <!--delete inventory-->
-        <div class="col-md-6 col-lg-3 py-5 px-5">
+        <div class="col-md-6 col-lg-3 py-5 px-5 cardHover">
             <div class="card py-3 px-3">
               
                 <div class="card-body">
                   <h5 class="card-title py-3 px-3">DELETE INVENTORY</h5>
-                  <p class="card-text py-3 px-3">Delete inventory details
+                  <p class="card-text py-3 px-3">Delete inventory
                     <br> <br>
                     <a (click)="enableDelete()" class="stretched-link">Click here</a>
                   </p>
@@ -61,7 +68,7 @@
 </div>
 
 <!--get inventory -->
-<div  *ngIf = "Get">
+<div  *ngIf = "Get" id="#get">
     <div class="details">
         <div class="row">
           <div class="col-md-auto mx-auto">
@@ -81,7 +88,7 @@
                   </div>
                   <br>
                   <div class="wrapper">
-                    <button type="button" class="btn" (click) = "getInventory()">Find</button>
+                    <button type="button" class="btn" (click) = "getInventory()" data-toggle="modal" data-target="#Modal1">Find</button>
                   </div>
                   
                 </form>
@@ -139,7 +146,7 @@
                   </div>
                   <br>
                   <div class="wrapper">
-                    <button type="button" class="btn" (click) = "updateInventory()">Update</button>
+                    <button type="button" class="btn" (click) = "updateInventory() " data-toggle="modal" data-target="#Modal2">Update</button>
                   </div>
                   
                 </form>
@@ -192,7 +199,7 @@
                   </div>
                   <br>
                   <div class="wrapper">
-                    <button type="button" class="btn" (click) = "addInventory()">ADD</button>
+                    <button type="button" class="btn" (click) = "addInventory()" data-toggle="modal" data-target="#Modal3">ADD</button>
                   </div>
                   
                 </form>
@@ -230,7 +237,7 @@
                   </div>
                   <br>
                   <div class="wrapper">
-                    <button type="button" class="btn" (click) = "deleteInventory()">Find</button>
+                    <button type="button" class="btn" (click) = "deleteInventory()" data-toggle="modal" data-target="#Modal4">Delete</button>
                   </div>
                   
                 </form>
@@ -246,3 +253,83 @@
       </div>
 </div>
 
+
+<!--Get Modal-->
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Inventory </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        INSERI GET VALUES
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Update Modal-->
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Update Inventory </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Inventory Updated
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Add Modal-->
+<div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Add Inventory </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Inventory Added 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Delete Modal-->
+<div class="modal fade" id="Modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Delete Inventory </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Inventory deleted!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,7 +15,11 @@ import { FinanceComponent } from './finance/finance.component';
 import { StaffComponent } from './staff/staff.component';
 import { MembersComponent } from './members/members.component';
 import { HallreservationComponent } from './hallreservation/hallreservation.component';
-import { RoomreservationComponent } from './roomreservation/roomreservation.component'
+import { RoomreservationComponent } from './roomreservation/roomreservation.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { LandingComponent } from './landing/landing.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import { RoomreservationComponent } from './roomreservation/roomreservation.comp
     StaffComponent,
     MembersComponent,
     HallreservationComponent,
-    RoomreservationComponent
+    RoomreservationComponent,
+    NavbarComponent,
+    FooterComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

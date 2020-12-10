@@ -1,18 +1,47 @@
-.card {
-    width: 18rem;
-    background-color: antiquewhite;
-    opacity: 0.8;
-    color: #333333;
-}a{
+
+.image{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    min-width: 100%;
+    min-height: 100%;
+    background-image: url("../../assets/home.jpg");
+    opacity: 0.5;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h3{
+    padding-bottom: 30px;
+    color: white;
+}
+
+.carousel-inner{
+    width: 60%;
+    height: 65%;
+    margin: auto;
+}
+.carousel-control-prev
+{
+    left: 80px;
+    top: 80px;
+}    
+.carousel-control-next
+{
+    right: 80px;
+    top: 80px;
+}
+
+a{
     text-decoration: none;
-    text-align: center;
-    color: #333333;
+    color: white;
+    text-transform: uppercase;
 }
 a:hover{
-    background-color: #333333;
-    color: antiquewhite;
+    color: white;
+    background-color: transparent;
+    font-size: 25px;
 }
-.card-img-top{
-    width: 254px;
-    height: 140px;
+img{
+    height: 500px;
 }

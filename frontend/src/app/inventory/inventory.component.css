@@ -47,3 +47,21 @@ a:hover{
     font-weight: bold;
     cursor: pointer;
 }
+.jumbotron{
+    background-image: url('../../assets/inventory.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+h1{
+    padding: 150px 0;
+}
+.modal-title{
+    color: #333333;
+}
+.modal-body{
+    color: #333333;
+}
+.cardHover:hover {
+    transform: scale(1.1); 
+  }

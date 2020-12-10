@@ -1,40 +1,16 @@
-.details .card{
-    background-color: transparent;
-    padding: 1.5rem 2rem;
-}
-.details input{
-    background: transparent;
-    border-radius: 2rem;
-    border-color: wheat;
-    color: wheat;
-}
-.details .wrapper {
-    text-align: center;
-}
-.details .card-title{
-    color: #333333;
-    background-color: wheat;
-}
-.details .btn{
-    background-color:transparent;
-    border: 2px solid wheat;
-    border-radius: 20px;
-    color: wheat;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-}
-.details label{
-    color: antiquewhite;
-    font-size: 1.2em;
-}
-.details .card{
-    width: auto;
+
+.top{
+    
+    min-width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/bills.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
 }
 .card {
     width: 18rem;
-    background-color: antiquewhite;
+    background-color: white;
     opacity: 0.8;
     color: #333333;
 }
@@ -46,4 +22,80 @@ a{
 a:hover{
     font-weight: bold;
     cursor: pointer;
+}
+.modal{
+    color: #333333;
+}
+.getBill{
+    min-width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/getBill.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+}
+.getBill .card{
+    position: absolute;
+    right: 20%;
+    top: 130%;
+    background-color: transparent;
+    border-color: transparent;
+    align-items: center;
+}
+input{
+    background: transparent;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: #26af5f;
+    width: 300px;
+    margin: 10px auto;
+}
+label{
+    font-size: 1.2em;
+}
+.btn{
+    background-color:transparent;
+    border: 2px solid #26af5f;
+    border-radius: 30px;
+    color: #2ecc71;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px auto;
+}
+.btn:hover{
+    color: whitesmoke;
+    background-color:#26af5f;
+}
+.addBill{
+    min-width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/addBill.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+}
+.addBill .card{
+    position: absolute;
+    left: 10%;
+    top: 105%;
+    background-color: transparent;
+    border-color: transparent;
+    align-items: center;
+}
+.getIncome{
+    min-width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/getIncome.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+}
+.getIncome .card{
+    position: absolute;
+    left: 10%;
+    top: 105%;
+    background-color: transparent;
+    border-color: transparent;
+    align-items: center;
 }

@@ -5,6 +5,7 @@ import { FinanceComponent } from './finance/finance.component';
 import { HallreservationComponent } from './hallreservation/hallreservation.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { MembersComponent } from './members/members.component';
 import { RoomreservationComponent } from './roomreservation/roomreservation.component';
@@ -12,6 +13,10 @@ import { SignupComponent } from './signup/signup.component';
 import { StaffComponent } from './staff/staff.component';
 
 const routes: Routes = [
+  {
+    path : '', 
+    component : LandingComponent
+  },
   {
     path : 'login', 
     component : LoginComponent

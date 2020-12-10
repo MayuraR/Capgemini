@@ -1,0 +1,26 @@
+
+.navbar{
+    justify-content: space-between;
+}
+
+ul{
+    display: flex;
+    width: auto;
+    margin-top: 0;
+    list-style-type: none;
+    font-size: 1.5em;
+}
+  
+li{
+    padding: 10px 10px;
+}
+a{
+    text-decoration: none;
+    text-align: center;
+    color: whitesmoke;
+}
+a:hover{
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+}

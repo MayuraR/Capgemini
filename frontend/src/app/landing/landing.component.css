@@ -1,0 +1,34 @@
+.display-3{
+    position: fixed;
+    top: 80%;
+    left: 20%;
+}
+.image{
+    
+    min-width: 100%;
+    min-height: 100vh;
+    background-image: url("../../assets/corridor.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    animation: image 12s linear infinite 0s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes image{
+    0% {
+        background-image: url("../../assets/corridor.jpg");
+    }
+    25% {
+        background-image: url("../../assets/bedroom.jpg");
+    }
+    50% {
+        background-image: url("../../assets/lobby.jpg");
+    }
+    75% {
+        background-image: url("../../assets/pool.jpg");
+    }
+    100% {
+        background-image: url("../../assets/corridor.jpg");
+    }
+}
