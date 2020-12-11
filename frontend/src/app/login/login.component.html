@@ -13,7 +13,7 @@
                         <input type="password" #password=ngModel class="form-control col-xs-4"  [(ngModel)]="loginUserData.password" name="password" placeholder="Password" required> 
                         <small [class.d-none] = "password.untouched || password.valid" class="text-danger">Password is required</small>
                         
-                        <input type="submit" name="submit" value="Login" class="btn" (click)="loginUser()">
+                        <input type="submit" name="submit" value="Login" class="btn" [disabled]='password.invalid || userId.invalid' (click)="loginUser()">
                     </form>
                 </div>
             </div>

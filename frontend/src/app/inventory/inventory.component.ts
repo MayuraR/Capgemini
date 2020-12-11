@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthserviceService } from '../authservice.service';
+import { InventoryService} from '../inventory.service'
 import { Router } from '@angular/router'
+import { InvokeFunctionExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-inventory',
@@ -9,13 +10,17 @@ import { Router } from '@angular/router'
 })
 export class InventoryComponent implements OnInit {
 
+  response:any;
+  addInventoryData:any={};
   inventoryData:any={};
+  getItem:any={}
+  deleteItem:any={}
 
   Add = false;
   Get = false;
   Update = false;
   Delete =false;
-  constructor(private _auth : AuthserviceService, private router : Router) { }
+  constructor(private _inventory : InventoryService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -48,12 +53,50 @@ export class InventoryComponent implements OnInit {
     this.Delete =true;
   }
 
-  getInventory(){}
+  getInventory(){
+    this._inventory.getInventory(this.getItem)
+    .subscribe(
+      res =>{
+        this.response=res;
+        console.log(res);
+      },
+      err => {
+        this.response = err.message;
+        console.log(err.message)
+      }
+    )
+  }
 
-  updateInventory(){}
+  updateInventory(){
+    
+  }
 
-  deleteInventory(){}
+  deleteInventory(){
+    this._inventory.deleteInventory(this.deleteItem)
+      .subscribe(
+        res=> {
+          this.response = res;
+          console.log(res)
+        },
+        err => {
+          this.response = err.message;
+          console.log(err)
+        }
+      )
+  }
 
-  addInventory(){}
+  addInventory(){
+    this._inventory.addInventory(this.addInventoryData)
+    .subscribe(
+      res=> {
+        this.response = 'Inventory Added';
+        console.log(res)
+      },
+      err => {
+        this.response = err.message;
+        console.log(err)
+      }
+    )
+  }
 }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthserviceService } from '../authservice.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-members',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersComponent implements OnInit {
 
+  getMembersData:any={};
+  updateMembersData:any={};
+  addMembersData:any={};
+  memberId:string=''
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  getMembers(){}
+  addMembers(){}
+  updateMembers(){}
 
 }

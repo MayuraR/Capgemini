@@ -68,7 +68,7 @@
 </div>
 
 <!--get inventory -->
-<div  *ngIf = "Get" id="#get">
+<div  *ngIf = "Get" id="get">
     <div class="details">
         <div class="row">
           <div class="col-md-auto mx-auto">
@@ -83,7 +83,7 @@
                 <form class="form">
                   <div class="form-group ">
                     <label for="uname1">Enter item:</label>
-                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="item" placeholder="Enter item to be found" required>
+                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="getItem.item" name="item" placeholder="Enter item to be found" required>
                     <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
                   </div>
                   <br>
@@ -179,22 +179,22 @@
                 <form class="form">
                   <div class="form-group ">
                     <label for="date">Enter date:</label>
-                    <input type="text" #date=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.date" name="date" placeholder="YYYY/MM/DD" required>
+                    <input type="text" #date=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.date" name="date" placeholder="YYYY/MM/DD" required>
                     <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Item is required</small>
                   </div>
                   <div class="form-group ">
                     <label for="area">Enter area:</label>
-                    <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.area" name="area" placeholder="Area" required>
+                    <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.area" name="area" placeholder="Area" required>
                     <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
                   </div>
                   <div class="form-group ">
                     <label for="item">Enter item:</label>
-                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="item" placeholder="Item" required>
+                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.item" name="item" placeholder="Item" required>
                     <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
                   </div>
                   <div class="form-group ">
                     <label for="quantity">Enter quantity:</label>
-                    <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.quantity" name="quantity" placeholder="quantity" required>
+                    <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.quantity" name="quantity" placeholder="quantity" required>
                     <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
                   </div>
                   <br>
@@ -232,7 +232,7 @@
                 <form class="form">
                   <div class="form-group ">
                     <label for="id">Enter ID:</label>
-                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="id" placeholder="Enter ID of item to be deleted" required>
+                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="deleteItem.id" name="id" placeholder="Enter ID of item to be deleted" required>
                     <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
                   </div>
                   <br>
@@ -265,7 +265,7 @@
         </button>
       </div>
       <div class="modal-body">
-        INSERI GET VALUES
+        {{response}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
@@ -305,7 +305,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Inventory Added 
+        {{response}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
@@ -325,7 +325,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Inventory deleted!
+        {{response}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>

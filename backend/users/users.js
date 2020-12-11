@@ -24,7 +24,8 @@ const User = require('../Models/Users')
 // create json web token
 const maxAge = 24 * 60 * 60;
 const createToken = (user) => {
-  return jwt.sign({ role: user.role }, 'net ninja secret', {
+  payload = {subject : user.role}
+  return jwt.sign(payload, 'net ninja secret', {
     expiresIn: maxAge
   });
 };
@@ -51,10 +52,10 @@ app.post('/login', async (req, res) =>{
 })
 
 //post request for signup
-app.post('/signup',requireAuth, (req, res) =>{
+app.post('/signup', (req, res) =>{
     const {userId, role, password} = req.body
     new User ({userId, role, password}).save()
-        .then(res.send("Created"))
+        .then(user => res.send(user))
         .catch( err => console.log(err.message))
 
 })

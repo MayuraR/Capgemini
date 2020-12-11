@@ -2,23 +2,19 @@ const jwt = require('jsonwebtoken');
 let r = '';
 
 const requireAuth = (req, res, next) => {
-  const token = req.cookies.jwt;
-
-  // check json web token exists & is verified
-  if (token) {
-    jwt.verify(token, 'net ninja secret', (err, decodedToken) => {
-      if (err) {
-        console.log(err.message);
-        res.redirect('http://localhost:4000/login');
-      } else {
-        console.log(decodedToken.role);
-        r = decodedToken.role
-        next();
-      }
-    });
-  } else {
-    res.redirect('http://localhost:4000/login');
+  if(!req.headers.authorization) {
+    return res.status(401).send('Unauthorized request')
   }
+  let token = req.headers.authorization.split(' ')[1]
+  if(token === 'null') {
+    return res.status(401).send('Unauthorized request')    
+  }
+  let payload = jwt.verify(token, 'net ninja secret')
+  if(!payload) {
+    return res.status(401).send('Unauthorized request')    
+  }
+  r = payload.subject
+  next()
 };
 
 const role = () => {

@@ -2,10 +2,12 @@ var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser')
 var { requireAuth } = require('../middleware/authentication')
+var cors = require('cors')
 var { authRole } = require('../middleware/authorization')
 
 app = express();
 app.use(cookieParser())
+app.use(cors())
 
 mongoose.Promise = global.Promise;
 
@@ -21,7 +23,7 @@ const Bill = require('../Models/Bill')
 //methods: ADD, GET
 
 //Get bill by customer id
-app.get('/bill/:memberId',requireAuth, authRole([]), (req, res) =>{
+app.get('/bill/:memberId', requireAuth, (req, res) =>{
     Bill.find({ memberId : req.params.memberId})
         .then((bills) => res.send(bills))
         .catch((err) => console.log(err))
@@ -29,7 +31,7 @@ app.get('/bill/:memberId',requireAuth, authRole([]), (req, res) =>{
 
 //get total income
 //http://localhost:3800/income?start=2018-01-01&&end=2018-12-31
-app.get('/income',requireAuth, authRole('Owner'), (req, res) =>{
+app.get('/income',requireAuth, (req, res) =>{
     const matchStart = Date.parse(req.query.start)
     const matchEnd = Date.parse(req.query.end)
     Bill.find({ date : {"$gt": new Date( matchStart ) ,"$lt": new Date( matchEnd ) }})
@@ -45,7 +47,7 @@ app.get('/income',requireAuth, authRole('Owner'), (req, res) =>{
 })
 
 //add a bill(POST)
-app.post('/bill',requireAuth, authRole([]), (req, res) =>{
+app.post('/bill',requireAuth, (req, res) =>{
     (new Bill ( { 'memberId' : req.body.memberId, 
                     'date' : req.body.date, 
                     'amount' : req.body.amount, 

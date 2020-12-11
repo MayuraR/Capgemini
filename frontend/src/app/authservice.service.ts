@@ -19,8 +19,12 @@ export class AuthserviceService{
     return this.http.post<any>(this._loginUrl, user)
   }
 
+  getToken(){
+    return localStorage.getItem('token')
+  }
+
   loggedIn() {
-    return !!localStorage.getItem('token')    
+    return localStorage.getItem('token')    
   }
 
   logOut(){
@@ -32,11 +36,6 @@ export class AuthserviceService{
 
   signUpUser(user:any){
     return this.http.post<any>(this._signUpUrl, user)
-  }
-
-  getToken(){
-    console.log(`this is the getToken() in auth setvice ${localStorage.getItem('token')}`)
-    return localStorage.getItem('token')
   }
 }
 

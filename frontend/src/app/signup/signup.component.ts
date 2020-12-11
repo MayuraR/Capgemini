@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
     .subscribe(
       res =>{
         console.log(res)
-        this.router.navigate(['/home'])
+        this.router.navigate(['/login'])
       },
       err =>{console.log(err.message)}
     )

@@ -68,7 +68,7 @@
               <form class="form">
                 <div class="form-group ">
                   <label for="id">Enter customer ID:</label>
-                  <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="billData.item" name="id" placeholder="Enter customer ID" required>
+                  <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="getBillData.item" name="id" placeholder="Enter customer ID" required>
                   <small [class.d-none] = "id.untouched || id.valid" class="text-danger">Item is required</small>
                 </div>
                 <br>
@@ -100,7 +100,7 @@
         </button>
       </div>
       <div class="modal-body">
-        INSERT GET VALUES
+        {{response}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
@@ -182,7 +182,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Bill added!
+        {{response}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
@@ -208,13 +208,13 @@
               <form class="form">
                 <div class="form-group ">
                   <label for="from">From:</label>
-                  <input type="text" #from=ngModel class="form-control col-xs-4" [(ngModel)]="income.from" name="from" placeholder="YYYY/MM/DD" required>
+                  <input type="text" #from=ngModel class="form-control col-xs-4" [(ngModel)]="income.start" name="from" placeholder="YYYY/MM/DD" required>
                   <small [class.d-none] = "from.untouched || from.valid" class="text-danger">Date is required</small>
                 </div>
 
                 <div class="form-group ">
                   <label for="to">To:</label>
-                  <input type="text" #to=ngModel class="form-control col-xs-4" [(ngModel)]="income.to" name="id" placeholder="YYYY/MM/DD" required>
+                  <input type="text" #to=ngModel class="form-control col-xs-4" [(ngModel)]="income.end" name="id" placeholder="YYYY/MM/DD" required>
                   <small [class.d-none] = "to.untouched || to.valid" class="text-danger">Date is required</small>
                 </div>
                 <br>
@@ -246,7 +246,7 @@
         </button>
       </div>
       <div class="modal-body">
-        income is
+        {{response}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>

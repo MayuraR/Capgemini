@@ -1,10 +1,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser')
+var cors = require('cors');
 var { requireAuth } = require('../middleware/authentication')
 var { authRole } = require('../middleware/authorization')
 
 app = express();
+app.use(express.json());
+app.use(cors());
 app.use(cookieParser())
 
 mongoose.Promise = global.Promise;

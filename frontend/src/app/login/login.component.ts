@@ -21,11 +21,20 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(this.loginUserData)
     .subscribe(
       res =>{
-        localStorage.setItem('token', res.token)
+        localStorage.setItem('token',  res.token)
+        console.log(this._auth.getToken())
         this.router.navigate(['/home'])
       },
-      err =>{console.log(err.message)}
+      err =>{
+        this.handleError(err)
+      }
     )
+  }
+
+  handleError(err){
+    if(err.status === 401){
+      alert("Enter credentials again")
+    }
   }
 
 }

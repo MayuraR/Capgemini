@@ -8,11 +8,11 @@ export class AuthGuard implements CanActivate {
     private _router: Router) { }
 
   canActivate(): boolean {
-    if (this._auth.loggedIn()) {
-      //console.log('true')
+    if (this._auth.loggedIn() != null) {
+      console.log(`Inside auth guard ${this._auth.loggedIn()}`)
       return true
     } else {
-      //console.log('false')            
+      console.log('false')            
       this._router.navigate(['/login'])
       return false
     }
