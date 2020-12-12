@@ -92,16 +92,19 @@ app.post('/room', (req, res) =>{
         "additionalRequirements" : req.body.additionalRequirements
 }))
         .save()
-        .then((res) => {
-            axios.get("http://localhost:3000/members/"+res.membershipId)
+        .then((reservation) => {
+
+            axios.get("http://localhost:3000/members/"+reservation.membershipId)
                 .then(response =>{
-                    reservationMail(res, response, info => {
+                    console.log(response.data[0]);
+                    reservationMail(reservation, response.data[0], info => {
                         console.log(`The mail has been sent and the id is ${info.messageId}`);
-                        console.log(info);
+                        //console.log(info);
                       }) 
                 })
                 .catch(err => console.log(err))
-            res.send(res)
+            //console.log("Within reservation")
+            res.send(reservation)
         })
         .catch((err) => console.log(err))
 
