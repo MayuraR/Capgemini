@@ -8,7 +8,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { AuthserviceService } from './authservice.service';
 import { FinanceService } from './finance.service';
-import { InventoryService } from './inventory.service'
+import { InventoryService } from './inventory.service';
+import { MembersService } from './members.service'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
@@ -45,7 +46,7 @@ import { LandingComponent } from './landing/landing.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthserviceService, AuthGuard, FinanceService, InventoryService,
+  providers: [AuthserviceService, AuthGuard, FinanceService, InventoryService, MembersService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

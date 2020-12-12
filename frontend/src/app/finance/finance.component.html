@@ -69,11 +69,11 @@
                 <div class="form-group ">
                   <label for="id">Enter customer ID:</label>
                   <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="getBillData.item" name="id" placeholder="Enter customer ID" required>
-                  <small [class.d-none] = "id.untouched || id.valid" class="text-danger">Item is required</small>
+                  <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
                 </div>
                 <br>
                 <div class="wrapper">
-                  <button type="button" class="btn" (click) = "getBill() " data-toggle="modal" data-target="#Modal1">Find</button>
+                  <button type="button" class="btn" (click) = "getBill() " data-toggle="modal" data-target="#Modal1" [disabled] = 'id.invalid'>Find</button>
                 </div>
                 
               </form>
@@ -131,7 +131,7 @@
 
                 <div class="form-group ">
                   <label for="date">Enter date:</label>
-                  <input type="text" #date=ngModel class="form-control col-xs-4" [(ngModel)]="billData.date" name="date" placeholder="YYYY/MM/DD" required>
+                  <input type="date" #date=ngModel class="form-control col-xs-4" [(ngModel)]="billData.date" name="date" required>
                   <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Date is required</small>
                 </div>
 
@@ -148,14 +148,14 @@
                 </div>
 
                 <div class="form-group ">
-                  <label for="gt">Enter customer ID:</label>
+                  <label for="gt">Grand Total:</label>
                   <input type="text" #gt=ngModel class="form-control col-xs-4" [(ngModel)]="billData.grandTotal" name="gt" placeholder="Enter grand total" required>
                   <small [class.d-none] = "gt.untouched || gt.valid" class="text-danger">ID is required</small>
                 </div>
 
                 <br>
                 <div class="wrapper">
-                  <button type="button" class="btn" (click) = "addBill()" data-toggle="modal" data-target="#Modal2">ADD</button>
+                  <button type="button" class="btn" (click) = "addBill()" data-toggle="modal" data-target="#Modal2" >ADD</button>
                 </div>
                 
               </form>
@@ -208,18 +208,18 @@
               <form class="form">
                 <div class="form-group ">
                   <label for="from">From:</label>
-                  <input type="text" #from=ngModel class="form-control col-xs-4" [(ngModel)]="income.start" name="from" placeholder="YYYY/MM/DD" required>
+                  <input type="date"  #from=ngModel class="form-control col-xs-4" [(ngModel)]="income.start" name="from" required>
                   <small [class.d-none] = "from.untouched || from.valid" class="text-danger">Date is required</small>
                 </div>
 
                 <div class="form-group ">
                   <label for="to">To:</label>
-                  <input type="text" #to=ngModel class="form-control col-xs-4" [(ngModel)]="income.end" name="id" placeholder="YYYY/MM/DD" required>
+                  <input type="date" #to=ngModel class="form-control col-xs-4" [(ngModel)]="income.end" name="to"  required>
                   <small [class.d-none] = "to.untouched || to.valid" class="text-danger">Date is required</small>
                 </div>
                 <br>
                 <div class="wrapper">
-                  <button type="button" class="btn" (click) = "getIncome()" data-toggle="modal" data-target="#Modal3">Get Income</button>
+                  <button type="button" class="btn" (click) = "getIncome()" data-toggle="modal" data-target="#Modal3" >Get Income</button>
                 </div>
                 
               </form>

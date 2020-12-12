@@ -42,3 +42,20 @@ form .btn{
 ::placeholder{
     color: lightgray;
 }
+.table{
+    background-color: whitesmoke;
+    padding: 50px, 50px;
+}
+th,tr,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+table{
+    color: #333333;
+    margin-left:auto; 
+    margin-right:auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+}

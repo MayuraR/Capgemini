@@ -1,9 +1,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 var cors = require('cors');
-var { requireAuth } = require('../middleware/authentication')
-var { authRole } = require('../middleware/authorization')
+var { requireAuth } = require('../middleware/authentication');
+var { authRole } = require('../middleware/authorization');
+var { sendMail } = require('../mail/sendMail')
 
 app = express();
 app.use(express.json());
@@ -24,29 +25,35 @@ const Member = require('../Models/Member')
 //methods: ADD, GET, UPDATE
 
 //Get all members
-app.get('/members', requireAuth, authRole([]), (req, res) =>{
+app.get('/members', requireAuth, (req, res) =>{
     Member.find({})
         .then((member) => res.send(member))
         .catch((err) => console.log(err))
 })
 
 //Get member by id
-app.get('/members/:id',requireAuth, authRole([]), (req, res) =>{
+app.get('/members/:id', (req, res) =>{
     Member.find({ _id : req.params.id})
         .then((member) => res.send(member))
         .catch((err) => console.log(err))
 })
 
 //add a member(POST)
-app.post('/members',requireAuth, authRole([]), (req, res) =>{
+app.post('/members', (req, res) =>{
     (new Member ( { 'name' : req.body.name, 'gender' : req.body.gender, 'contact' : req.body.contact, 'email' : req.body.email}))
         .save()
-        .then((member) => res.send(member))
+        .then((member) => {
+            sendMail(member, info => {
+                console.log(`The mail has been sent and the id is ${info.messageId}`);
+                console.log(info);
+              })
+            res.send(member)
+        })
         .catch((err) => console.log(err))
 })
 
 //update (PATCH)
-app.patch('/members/:id',requireAuth, authRole([]), (req, res) =>{
+app.patch('/members/:id',requireAuth, (req, res) =>{
     Member.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
         .then((member) => {
             console.log('member updated');

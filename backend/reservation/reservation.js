@@ -2,8 +2,10 @@ var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
-var { requireAuth } = require('../middleware/authentication')
-var { authRole } = require('../middleware/authorization')
+var axios =require('axios');
+var { requireAuth } = require('../middleware/authentication');
+var { authRole } = require('../middleware/authorization');
+var { reservationMail } = require('../mail/reservationMail');
 
 app = express();
 app.use(express.json());
@@ -77,8 +79,8 @@ app.get('/available',requireAuth, authRole([]), (req, res) =>{
    
 })
 
-//add a member(POST)
-app.post('/room',requireAuth, authRole([]), (req, res) =>{
+//add a reservation(POST)
+app.post('/room', (req, res) =>{
     (new roomReservation ( {
         "membershipId" : req.body.membershipId, 
         "noOfChildren" : req.body.noOfChildren,
@@ -90,7 +92,17 @@ app.post('/room',requireAuth, authRole([]), (req, res) =>{
         "additionalRequirements" : req.body.additionalRequirements
 }))
         .save()
-        .then((member) => res.send(member))
+        .then((res) => {
+            axios.get("http://localhost:3000/members/"+res.membershipId)
+                .then(response =>{
+                    reservationMail(res, response, info => {
+                        console.log(`The mail has been sent and the id is ${info.messageId}`);
+                        console.log(info);
+                      }) 
+                })
+                .catch(err => console.log(err))
+            res.send(res)
+        })
         .catch((err) => console.log(err))
 
         //add to the room database

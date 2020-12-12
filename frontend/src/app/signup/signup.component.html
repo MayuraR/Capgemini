@@ -31,7 +31,7 @@
       </div>
       <br>
       <div class="wrapper">
-        <button type="button" class="btn" (click) = "registerUser()">Add User</button>
+        <button type="button" class="btn" (click) = "registerUser()" [disabled]='password.invalid || role.invalid || userId.invalid'>Add User</button>
       </div>
       
     </form>
