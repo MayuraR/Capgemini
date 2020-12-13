@@ -1,0 +1,55 @@
+<!--get members-->
+<div class="media position-relative details ">
+
+    <img class="mr-2" style="height: 144px; width: 144px" src="../../assets/member.png"
+      alt="image">
+  
+    <div class="media-body px-5">
+      <h5 class="">Get member</h5>
+      <p class=" text-muted"> Enter details</p>
+      <form class="form">
+        <div class="form-group ">
+            <label for="name">ID</label>
+            <input type="text" #idg=ngModel class="form-control col-xs-4" [(ngModel)]="getMembersData._id" name="idg" placeholder="Enter ID" required>
+            <small [class.d-none] = "idg.untouched || idg.valid" class="text-danger">ID is required</small>
+        </div>
+        <br>
+
+        <button type="button" class="btn" (click) = "getMembers()" >Get</button>
+        <button type="button" class="btn ml-5" routerLink="/members">Back</button>
+       </form>
+
+
+       <div class="table">
+        <table  *ngIf='displayTable'>
+          <tr>
+            <th>Field</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td> ID: </td>
+            <td>{{getMembersData._id}}</td>
+          </tr>
+          <tr>
+            <td> Name: </td>
+            <td>{{getMembersData.name}}</td>
+          </tr>
+          <tr>
+            <td> Gender: </td>
+            <td>{{getMembersData.gender}}</td>
+          </tr>
+          <tr>
+            <td> Contact: </td>
+            <td>{{getMembersData.contact}}</td>
+          </tr>
+          <tr>
+            <td> Email: </td>
+            <td>{{getMembersData.email}}</td>
+          </tr>
+        </table>
+        <br>
+      </div>
+      
+    </div>
+</div>
+

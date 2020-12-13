@@ -1,41 +1,8 @@
-.details .card{
-    background-color: transparent;
-    padding: 1.5rem 2rem;
-}
-.details input{
-    background: transparent;
-    border-radius: 2rem;
-    border-color: wheat;
-    color: wheat;
-}
-.details .wrapper {
-    text-align: center;
-}
-.details .card-title{
+div{
+    background-color: whitesmoke;
     color: #333333;
-    background-color: wheat;
 }
-.details .btn{
-    background-color:transparent;
-    border: 2px solid wheat;
-    border-radius: 20px;
-    color: wheat;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-}
-.details label{
-    color: antiquewhite;
-    font-size: 1.2em;
-}
-.details .card{
-    width: auto;
-}
-.card {
-    width: 18rem;
-    background-color: antiquewhite;
-    opacity: 0.8;
+app-navbar{
     color: #333333;
 }
 a{
@@ -48,20 +15,23 @@ a:hover{
     cursor: pointer;
 }
 .jumbotron{
-    background-image: url('../../assets/inventory.jpg');
+    background-image: url('../../assets/inventory2.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 500px;
 }
 h1{
+    color: whitesmoke;
     padding: 150px 0;
+    font-weight: 400;
 }
-.modal-title{
+.modal- content{
     color: #333333;
 }
-.modal-body{
-    color: #333333;
+.btn{
+    padding: 10px;
+    margin-right: 10px;
 }
-.cardHover:hover {
-    transform: scale(1.1); 
+table .btn{
+    margin: 2px;
   }

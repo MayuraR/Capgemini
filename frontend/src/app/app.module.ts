@@ -6,22 +6,29 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
-import { AuthserviceService } from './authservice.service';
-import { FinanceService } from './finance.service';
-import { InventoryService } from './inventory.service';
-import { MembersService } from './members.service'
+import { AuthserviceService } from './auth/authservice.service';
+import { FinanceService } from './services/finance.service';
+import { InventoryService } from './services/inventory.service';
+import { MembersService } from './services/members.service'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthGuard } from './auth.guard';
-import { TokenInterceptorService } from './token-interceptor.service';
+import { AuthGuard } from './auth/auth.guard';
+import { TokenInterceptorService } from './auth/token-interceptor.service';
 import { InventoryComponent } from './inventory/inventory.component';
-import { FinanceComponent } from './finance/finance.component';
+import { FinanceComponent } from './finance/finance/finance.component';
 import { StaffComponent } from './staff/staff.component';
-import { MembersComponent } from './members/members.component';
-import { HallreservationComponent } from './hallreservation/hallreservation.component';
+import { MembersComponent } from './members/members/members.component';
 import { RoomreservationComponent } from './roomreservation/roomreservation.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
+import { AddBillComponent } from './finance/add-bill/add-bill.component';
+import { GetIncomeComponent } from './finance/get-income/get-income.component';
+import { GetBillComponent } from './finance/get-bill/get-bill.component';
+import { AddmemberComponent } from './members/addmember/addmember.component';
+import { GetmemberComponent } from './members/getmember/getmember.component';
+import { UpdatememberComponent } from './members/updatemember/updatemember.component';
+import { MemberParentComponent } from './members/member-parent/member-parent.component';
+import { FinanceParentComponent } from './finance/finance-parent/finance-parent.component';
 
 
 @NgModule({
@@ -34,11 +41,18 @@ import { LandingComponent } from './landing/landing.component';
     FinanceComponent,
     StaffComponent,
     MembersComponent,
-    HallreservationComponent,
     RoomreservationComponent,
     NavbarComponent,
     FooterComponent,
-    LandingComponent
+    LandingComponent,
+    AddBillComponent,
+    GetIncomeComponent,
+    GetBillComponent,
+    AddmemberComponent,
+    GetmemberComponent,
+    UpdatememberComponent,
+    MemberParentComponent,
+    FinanceParentComponent,
   ],
   imports: [
     BrowserModule,

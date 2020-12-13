@@ -1,0 +1,28 @@
+.details{
+    background-color: whitesmoke;
+    color: #333333;
+    padding: 100px 200px;
+}
+
+form .btn{
+    background-color:transparent;
+    border: 2px solid #26af5f;
+    border-radius: 30px;
+    color: #2ecc71;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px auto;
+}
+.modal{
+    color: #333333;
+}
+.form-control{
+    background: transparent;
+    border-width: 2px;
+    border-color: gray;
+    width: 300px;
+}
+::placeholder{
+    color: lightgray;
+}

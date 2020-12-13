@@ -2,7 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
-var axios =require('axios');
+var axios = require('axios');
 var { requireAuth } = require('../middleware/authentication');
 var { authRole } = require('../middleware/authorization');
 var { reservationMail } = require('../mail/reservationMail');
@@ -15,18 +15,17 @@ app.use(cookieParser());
 
 mongoose.Promise = global.Promise;
 
-const roomReservationSchema = require('../Models/Room-reservation')
+const roomReservationSchema = require('../Models/Room-reservation');
 const roomSchema = require('../Models/Room');
-const hallReservationSchema = require('../Models/Hall-reservation');
 
 // connect to the database
 var r = mongoose.createConnection('mongodb+srv://test:test@cluster0.tfqi1.mongodb.net/room', { useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
 var roomReservation = mongoose.createConnection('mongodb+srv://test:test@cluster0.tfqi1.mongodb.net/room-reservation', { useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
-var hallReservation = mongoose.createConnection('mongodb+srv://test:test@cluster0.tfqi1.mongodb.net/hall-reservation',{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
+
 
 var roomReservation  = roomReservation.model('roomReservation', roomReservationSchema);
 var room = r.model('room', roomSchema);
-var hallReservation = hallReservation.model('hallReservation', hallReservationSchema)
+
 
 //ROOM RESERVATION
 //methods: ADD, GET, UPDATE, DELETE
@@ -190,48 +189,6 @@ app.post('/addRoom',requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
     .then(res.send(`room ${req.body.roomNo} is added`))
 })
 
-//HALL RESERVATION
-
-//Get all hall reservations
-app.get('/hall',requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
-    hallReservation.find({})
-        .then((hall) => res.send(hall))
-        .catch((err) => console.log(err))
-})
-
-//Get hall reservation by date
-app.get('/hall/:date', requireAuth, authRole([]), (req, res) =>{
-    hallReservation.find({ dateOfReservation : Date.parse(req.params.date)})
-        .then((reservation) => res.send(reservation))
-        .catch((err) => console.log(err))
-})
-
-//add a reservation
-app.post('/hall', requireAuth, authRole([]), (req, res) =>{
-    (new hallReservation ( { 'membershipId' : req.body.membershipId, 'dateOfReservation' : req.body.dateOfReservation, 'verificationDoc' : req.body.verificationDoc, 'purpose' : req.body.purpose}))
-        .save()
-        .then((reservation) => res.send(reservation))
-        .catch((err) => console.log(err))
-})
-
-//update a reservation (PATCH)
-app.patch('/hall/:id', requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
-    hallReservation.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
-        .then((reservation) => {
-            console.log('reservation updated');
-            hallReservation.find({ _id : req.params.id})
-                .then((reservation) => res.send(reservation))
-                .catch((err) => console.log(err))})
-        .catch((err) => console.log(err))
-    
-})
-
-//deleting a reservation 
-app.delete('/hall/:id',requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
-    hallReservation.findOneAndDelete({  _id : req.params.id })
-        .then((reservation) => res.send("Reservation deleted"))
-        .catch((err) => console.log(err))
-})
 
 app.listen(3500, () => {
     console.log('Listening to port 3500')

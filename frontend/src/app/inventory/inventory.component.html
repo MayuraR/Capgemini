@@ -1,335 +1,153 @@
-<app-navbar></app-navbar>
-<div class="container">
+<div>
+  <app-navbar></app-navbar>
+  <div class="container">
 
-  <div class="jumbotron justify-content-center ">
-      <h1 class="display-3">Inventory</h1>
+    <div class="jumbotron justify-content-center ">
+        <h1 class="display-3">Inventory</h1>
+    </div>
+  
   </div>
 
-</div>
-
-<div class="container-fluid">
-    <div class="row">
-        <!--get inventory -->
-        <div class="col-md-6 col-lg-3 py-5 px-5">
-            <div class="card py-3 px-3 cardHover" >
-              
-                <div class="card-body">
-                  <h5 class="card-title py-3 px-3"> GET INVENTORY</h5>
-                  <p class="card-text py-3 px-3">Enter the item to get inventory
-                    <br> <br>
-                    <a (click)="enableGet()"  class="stretched-link">Click here</a>
-                  </p>
-                </div>
-            </div>
-        </div>
-
-        <!--update inventory-->
-        <div class="col-md-6 col-lg-3 py-5 px-5">
-            <div class="card py-3 px-3 cardHover">
-              
-                <div class="card-body">
-                  <h5 class="card-title py-3 px-3">UPDATE INVENTORY</h5>
-                  <p class="card-text py-3 px-3">Update inventory details
-                    <br> <br>
-                    <a (click)="enableUpdate()" class="stretched-link">Click here</a>
-                  </p>
-                </div>
-            </div>
-        </div>
-
-        <!--add inventory-->
-        <div class="col-md-6 col-lg-3 py-5 px-5">
-            <div class="card py-3 px-3 cardHover">
-              
-                <div class="card-body">
-                  <h5 class="card-title py-3 px-3">ADD INVENTORY</h5>
-                  <p class="card-text py-3 px-3">Add inventory details
-                    <br> <br>
-                    <a (click)="enableAdd()" class="stretched-link">Click here</a>
-                  </p>
-                </div>
-            </div>
-        </div>
-        
-        <!--delete inventory-->
-        <div class="col-md-6 col-lg-3 py-5 px-5 cardHover">
-            <div class="card py-3 px-3">
-              
-                <div class="card-body">
-                  <h5 class="card-title py-3 px-3">DELETE INVENTORY</h5>
-                  <p class="card-text py-3 px-3">Delete inventory
-                    <br> <br>
-                    <a (click)="enableDelete()" class="stretched-link">Click here</a>
-                  </p>
-                </div>
-            </div>
-        </div>  
+  <br><br>
+    
+    <div class="container">
+      <button class="btn btn-md btn-outline-primary" data-toggle="modal" data-target="#addModal">Add</button>
+      <button class="btn btn-md btn-outline-success" data-toggle="modal" data-target="#getModal">Get by item</button>
+      <table *ngIf = 'display' class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Area</th>
+          <th>Quantity</th>
+          <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of inventory">
+          <td><span>{{item._id}}</span></td>
+          <td><span>{{item.date}}</span></td>
+          <td><span>{{item.area}}</span></td>
+          <td><span>{{item.quantity}}</span></td>
+          <td>
+            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" (click)=assign(item)>Edit</button>
+            <button class="btn btn-sm btn-danger" (click)=deleteInventory(item)>Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-</div>
+  
+  
 
-<!--get inventory -->
-<div  *ngIf = "Get" id="get">
-    <div class="details">
-        <div class="row">
-          <div class="col-md-auto mx-auto">
-            <span class="anchor" id="formInventory"></span>
-    
-            <!-- form card get -->
-            <div class="card rounded-0">
-              <div class="card-title py-5">
-                <h3 class="text-center display-4">GET INVENTORY</h3>
-              </div>
-              <div class="card-body">
-                <form class="form">
-                  <div class="form-group ">
-                    <label for="uname1">Enter item:</label>
-                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="getItem.item" name="item" placeholder="Enter item to be found" required>
-                    <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
-                  </div>
-                  <br>
-                  <div class="wrapper">
-                    <button type="button" class="btn" (click) = "getInventory()" data-toggle="modal" data-target="#Modal1">Find</button>
-                  </div>
-                  
-                </form>
-              </div>
-              <!--/card-block-->
-            </div>
-            <!-- /form card login -->
-      
-          </div>
-      
-      
-        </div>
-      </div>
-</div>
-
-
-<!--update inventory -->
-<div  *ngIf = "Update">
-    <div class="details">
-        <div class="row">
-          <div class="col-md-auto mx-auto">
-            <span class="anchor" id="formInventory"></span>
-    
-            <!-- form card get -->
-            <div class="card rounded-0">
-              <div class="card-title py-5">
-                <h3 class="text-center display-4">UPDATE INVENTORY</h3>
-              </div>
-              <div class="card-body">
-                <form class="form">
-                    <div class="form-group ">
-                        <label for="id">Enter id:</label>
-                        <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.id" name="id" placeholder="Enter id" required>
-                        <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
-                    </div>
-                  <div class="form-group ">
-                    <label for="date">Enter date:</label>
-                    <input type="text" #date=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.date" name="date" placeholder="YYYY/MM/DD" required>
-                    <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Item is required</small>
-                  </div>
-                  <div class="form-group ">
-                    <label for="area">Enter area:</label>
-                    <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.area" name="area" placeholder="Area" required>
-                    <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
-                  </div>
-                  <div class="form-group ">
-                    <label for="item">Enter item:</label>
-                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.item" name="item" placeholder="Item" required>
-                    <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
-                  </div>
-                  <div class="form-group ">
-                    <label for="quantity">Enter quantity:</label>
-                    <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="inventoryData.quantity" name="quantity" placeholder="quantity" required>
-                    <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
-                  </div>
-                  <br>
-                  <div class="wrapper">
-                    <button type="button" class="btn" (click) = "updateInventory() " data-toggle="modal" data-target="#Modal2">Update</button>
-                  </div>
-                  
-                </form>
-              </div>
-              <!--/card-block-->
-            </div>
-            <!-- /form card login -->
-      
-          </div>
-      
-      
-        </div>
-      </div>
-</div>
-
-
-<!--add inventory -->
-<div  *ngIf = "Add">
-    <div class="details">
-        <div class="row">
-          <div class="col-md-auto mx-auto">
-            <span class="anchor" id="formInventory"></span>
-    
-            <!-- form card get -->
-            <div class="card rounded-0">
-              <div class="card-title py-5">
-                <h3 class="text-center display-4">ADD INVENTORY</h3>
-              </div>
-              <div class="card-body">
-                <form class="form">
-                  <div class="form-group ">
-                    <label for="date">Enter date:</label>
-                    <input type="text" #date=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.date" name="date" placeholder="YYYY/MM/DD" required>
-                    <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Item is required</small>
-                  </div>
-                  <div class="form-group ">
-                    <label for="area">Enter area:</label>
-                    <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.area" name="area" placeholder="Area" required>
-                    <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
-                  </div>
-                  <div class="form-group ">
-                    <label for="item">Enter item:</label>
-                    <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.item" name="item" placeholder="Item" required>
-                    <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
-                  </div>
-                  <div class="form-group ">
-                    <label for="quantity">Enter quantity:</label>
-                    <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.quantity" name="quantity" placeholder="quantity" required>
-                    <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
-                  </div>
-                  <br>
-                  <div class="wrapper">
-                    <button type="button" class="btn" (click) = "addInventory()" data-toggle="modal" data-target="#Modal3">ADD</button>
-                  </div>
-                  
-                </form>
-              </div>
-              <!--/card-block-->
-            </div>
-            <!-- /form card login -->
-      
-          </div>
-      
-      
-        </div>
-      </div>
-</div>
-
-
-<!--delete inventory -->
-<div  *ngIf = "Delete">
-    <div class="details">
-        <div class="row">
-          <div class="col-md-auto mx-auto">
-            <span class="anchor" id="formInventory"></span>
-    
-            <!-- form card get -->
-            <div class="card rounded-0">
-              <div class="card-title py-5">
-                <h3 class="text-center display-4">DELETE INVENTORY</h3>
-              </div>
-              <div class="card-body">
-                <form class="form">
-                  <div class="form-group ">
-                    <label for="id">Enter ID:</label>
-                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="deleteItem.id" name="id" placeholder="Enter ID of item to be deleted" required>
-                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
-                  </div>
-                  <br>
-                  <div class="wrapper">
-                    <button type="button" class="btn" (click) = "deleteInventory()" data-toggle="modal" data-target="#Modal4">Delete</button>
-                  </div>
-                  
-                </form>
-              </div>
-              <!--/card-block-->
-            </div>
-            <!-- /form card login -->
-      
-          </div>
-      
-      
-        </div>
-      </div>
-</div>
-
-
-<!--Get Modal-->
-<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!--MODALS-->
+  <!--add modal-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Inventory </h5>
+        <h5 class="modal-title">ADD</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        {{response}}
+        <form class="form">
+          <div class="form-group ">
+            <label for="date">Enter date:</label>
+            <input type="date" #date=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.date" name="date" placeholder="YYYY/MM/DD" required>
+            <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Item is required</small>
+          </div>
+          <div class="form-group ">
+            <label for="area">Enter area:</label>
+            <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.area" name="area" placeholder="Area" required>
+            <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
+          </div>
+          <div class="form-group ">
+            <label for="item">Enter item:</label>
+            <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.item" name="item" placeholder="Item" required>
+            <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+          </div>
+          <div class="form-group ">
+            <label for="quantity">Enter quantity:</label>
+            <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="addInventoryData.quantity" name="quantity" placeholder="quantity" required>
+            <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
+          </div>          
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)='addInventory()' data-dismiss="modal" [disabled]='quantity.invalid || item.invalid ||area.invalid|| date.invalid'>Add</button>
       </div>
     </div>
   </div>
 </div>
 
-<!--Update Modal-->
-<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--get Modal -->
+<div class="modal fade" id="getModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Update Inventory </h5>
+        <h5 class="modal-title">Get by item</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Inventory Updated
+        <form class="form">
+          <div class="form-group ">
+            <label for="uname1">Enter item:</label>
+            <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="getItem.item" name="item" placeholder="Enter item to be found" required>
+            <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+          </div>          
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='getInventory()'>Search</button>
       </div>
     </div>
   </div>
 </div>
 
-<!--Add Modal-->
-<div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Add Inventory </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {{response}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+  <!--update modal-->
+  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Inventory</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form">
+            <div class="form-group ">
+              <label for="date">Enter date:</label>
+              <input type="date" #date=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.date" name="date" required>
+              <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Item is required</small>
+            </div>
+            <div class="form-group ">
+              <label for="area">Enter area:</label>
+              <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.area" name="area" placeholder="Area" required>
+              <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
+            </div>
+            <div class="form-group ">
+              <label for="item">Enter item:</label>
+              <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.item" name="item" placeholder="Item" required>
+              <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+            </div>
+            <div class="form-group ">
+              <label for="quantity">Enter quantity:</label>
+              <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.quantity" name="quantity" placeholder="quantity" required>
+              <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
+            </div>          
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)='updateInventory()' data-dismiss="modal" >Update</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<!--Delete Modal-->
-<div class="modal fade" id="Modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Delete Inventory </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {{response}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>

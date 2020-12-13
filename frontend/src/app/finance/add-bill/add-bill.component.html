@@ -1,0 +1,83 @@
+<!--add bill -->
+<div  class="addBill">
+    <app-navbar></app-navbar>
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formInventory"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-3">
+                <h3 class="text-center display-4">ADD BILL</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="id">Enter customer ID:</label>
+                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="billData.memberId" name="id" placeholder="Enter customer ID" required>
+                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
+                  </div>
+  
+                  <div class="form-group ">
+                    <label for="date">Enter date:</label>
+                    <input type="date" #date=ngModel class="form-control col-xs-4" [(ngModel)]="billData.date" name="date" required>
+                    <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Date is required</small>
+                  </div>
+  
+                  <div class="form-group ">
+                    <label for="amount">Enter amount:</label>
+                    <input type="number" #amount=ngModel class="form-control col-xs-4" [(ngModel)]="billData.amount" name="id" placeholder="Enter amount" required>
+                    <small [class.d-none] = "amount.untouched || amount.valid" class="text-danger">amount is required</small>
+                  </div>
+  
+                  <div class="form-group ">
+                    <label for="gst">Enter gst:</label>
+                    <input type="number" #gst=ngModel class="form-control col-xs-4" [(ngModel)]="billData.gst" name="id" placeholder="Enter gst" required>
+                    <small [class.d-none] = "gst.untouched || gst.valid" class="text-danger">GST is required</small>
+                  </div>
+  
+                  <div class="form-group ">
+                    <label for="gt">Grand Total:</label>
+                    <input type="text" #gt=ngModel class="form-control col-xs-4" [(ngModel)]="billData.grandTotal" name="gt" placeholder="Enter grand total" required>
+                    <small [class.d-none] = "gt.untouched || gt.valid" class="text-danger">ID is required</small>
+                  </div>
+  
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "addBill()" data-toggle="modal" data-target="#Modal2" >Add</button>
+                    <button type="button" class="btn ml-5" (click) = "back() ">Back</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+  </div>
+  
+  <!--modal for add-->
+  <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel"> Add Bill </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{response}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>

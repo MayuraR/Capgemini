@@ -1,0 +1,64 @@
+<!--get income -->
+<div  class="getIncome">
+    <app-navbar></app-navbar>
+    <div class="details">
+        <div class="row">
+          <div class="col-md-auto mx-auto">
+            <span class="anchor" id="formFinance"></span>
+    
+            <!-- form card get -->
+            <div class="card rounded-0">
+              <div class="card-title py-5">
+                <h3 class="text-center display-4">GET INCOME</h3>
+              </div>
+              <div class="card-body">
+                <form class="form">
+                  <div class="form-group ">
+                    <label for="from">From:</label>
+                    <input type="date"  #from=ngModel class="form-control col-xs-4" [(ngModel)]="income.start" name="from" required>
+                    <small [class.d-none] = "from.untouched || from.valid" class="text-danger">Date is required</small>
+                  </div>
+  
+                  <div class="form-group ">
+                    <label for="to">To:</label>
+                    <input type="date" #to=ngModel class="form-control col-xs-4" [(ngModel)]="income.end" name="to"  required>
+                    <small [class.d-none] = "to.untouched || to.valid" class="text-danger">Date is required</small>
+                  </div>
+                  <br>
+                  <div class="wrapper">
+                    <button type="button" class="btn" (click) = "getIncome()" data-toggle="modal" data-target="#Modal3" >Get Income</button>
+                    <button type="button" class="btn ml-5" (click) = "back() ">Back</button>
+                  </div>
+                  
+                </form>
+              </div>
+              <!--/card-block-->
+            </div>
+            <!-- /form card login -->
+      
+          </div>
+      
+      
+        </div>
+      </div>
+  </div>
+  
+  <!--modal for get-->
+  <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel"> Get Income </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{response}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
