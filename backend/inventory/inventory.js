@@ -32,6 +32,7 @@ app.get('/inventory',  requireAuth, (req, res) =>{
         .catch((err) => console.log(err))
 })
 
+
 //Get inventory by item
 app.get('/inventory/:item',requireAuth, (req, res) =>{
     Inventory.find({ item : req.params.item})

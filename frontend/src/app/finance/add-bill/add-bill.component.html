@@ -21,7 +21,7 @@
   
                   <div class="form-group ">
                     <label for="date">Enter date:</label>
-                    <input type="date" #date=ngModel class="form-control col-xs-4" [(ngModel)]="billData.date" name="date" required>
+                    <input type="date" #date=ngModel class="form-control col-xs-4" [(ngModel)]="billData.date" name="date"  required>
                     <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Date is required</small>
                   </div>
   
@@ -45,7 +45,7 @@
   
                   <br>
                   <div class="wrapper">
-                    <button type="button" class="btn" (click) = "addBill()" data-toggle="modal" data-target="#Modal2" >Add</button>
+                    <button type="button" class="btn" (click) = "addBill()" data-toggle="modal" data-target="#Modal2" [disabled] = "date.invalid || amount.invalid || gst.invalid || gt.invalid">Add</button>
                     <button type="button" class="btn ml-5" (click) = "back() ">Back</button>
                   </div>
                   

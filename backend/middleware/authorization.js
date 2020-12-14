@@ -1,6 +1,7 @@
 const { role } = require('./authentication')
 
 function authRole(roles) {
+  
     if (typeof roles === 'string') {
         roles = [roles];
     }

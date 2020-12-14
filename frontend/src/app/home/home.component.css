@@ -6,14 +6,17 @@
     min-width: 100%;
     min-height: 100%;
     background-image: url("../../assets/home.jpg");
-    opacity: 0.5;
+    opacity: 0.9;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 h3{
+    
     padding-bottom: 30px;
-    color: white;
+    color: black;
+    opacity: 1;
+    font-weight: 600;
 }
 
 .carousel-inner{

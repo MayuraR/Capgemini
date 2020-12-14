@@ -1,3 +1,4 @@
+<div class="wrapper">
 <app-navbar></app-navbar>
 
 <div class="row">
@@ -30,11 +31,12 @@
         <small [class.d-none] = "password.untouched || password.valid" class="text-danger">Password is required</small>
       </div>
       <br>
-      <div class="wrapper">
+      <div>
         <button type="button" class="btn" (click) = "registerUser()" [disabled]='password.invalid || role.invalid || userId.invalid'>Add User</button>
       </div>
       
     </form>
   </div>
+</div>
 </div>
 </div>

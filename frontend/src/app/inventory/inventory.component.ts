@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService} from '../services/inventory.service'
-import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-inventory',
@@ -15,7 +14,7 @@ export class InventoryComponent implements OnInit {
   updateInventoryData:any={};
   getItem:any={}
 
-  constructor(private _inventory : InventoryService, private router : Router) { }
+  constructor(private _inventory : InventoryService) { }
 
   ngOnInit(): void {
   }
@@ -72,6 +71,7 @@ export class InventoryComponent implements OnInit {
     .subscribe(
       res=> {
         console.log(res)
+        this.getItem.item=this.addInventoryData.item;
         this.addInventoryData={}
         this.getInventory()
 

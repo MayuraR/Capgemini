@@ -10,12 +10,12 @@
         <form class="form">
             <div class="form-group ">
                 <label for="name">ID</label>
-                <input type="text" #idg=ngModel class="form-control col-xs-4" [(ngModel)]="getMembersData._id" name="idg" placeholder="Enter ID" required>
-                <small [class.d-none] = "idg.untouched || idg.valid" class="text-danger">ID is required</small>
+                <input type="text" #idg=ngModel class="form-control col-xs-4" [(ngModel)]="getMembersData._id" name="idg" [disabled]='display' placeholder="Enter ID" required>
+                <small [class.d-none] = "idg.untouched || idg.valid ||display" class="text-danger">ID is required</small>
             </div>
             <br>
     
-            <button type="button" class="btn" (click) = "getMembers()" data-toggle="modal" data-target="#Modal3">Get</button>
+            <button type="button" class="btn" (click) = "getMembers()" data-toggle="modal" data-target="#Modal3" [disabled]='idg.invalid'>Get</button>
             <button type="button" class="btn ml-5" routerLink="/members">Back</button>
         </form>
 

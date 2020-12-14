@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthserviceService } from '../auth/authservice.service'
+import { AuthserviceService } from '../auth/authservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +9,13 @@ import { AuthserviceService } from '../auth/authservice.service'
 })
 export class NavbarComponent implements OnInit {
 
-  constructor( public _auth : AuthserviceService ) { }
+  constructor( public _auth : AuthserviceService, private router :Router) { }
 
   ngOnInit(): void {
+  }
+
+  home(){
+    this.router.navigate(['home']);
   }
 
 }

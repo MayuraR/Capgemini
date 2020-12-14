@@ -15,9 +15,10 @@
         </div>
         <br>
 
-        <button type="button" class="btn" (click) = "getMembers()" >Get</button>
+        <button type="button" class="btn" (click) = "getMembers()" [disabled] = "idg.invalid">Get</button>
         <button type="button" class="btn ml-5" routerLink="/members">Back</button>
        </form>
+       <br> <br>
 
 
        <div class="table">

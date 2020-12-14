@@ -1,0 +1,35 @@
+
+.top{
+    
+    min-width: 100%;
+    min-height: 100vh;
+    background-image: url('../../../../assets/bedroom.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+}
+header{
+    margin-left: auto;
+    margin-right: auto;
+}
+.card {
+    width: 18rem;
+    background-color: white;
+    opacity: 0.8;
+    color: #333333;
+}
+a{
+    text-decoration: none;
+    text-align: center;
+    color: #333333;
+}
+a:hover{
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal{
+    color: #333333;
+}
+h5, header{
+    text-transform: uppercase;
+}

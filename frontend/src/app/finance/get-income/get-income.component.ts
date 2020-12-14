@@ -23,7 +23,11 @@ export class GetIncomeComponent implements OnInit {
 
 
   getIncome(){
-    console.log(this.income);
+    if(new Date(this.income.start).getTime()  >  new Date(this.income.end).getTime()){
+      this.response='Start Date should be lesser than End Date'
+    }
+    else{
+      console.log(this.income);
     this._finance.getIncome(this.income)
       .subscribe(
         res =>{
@@ -35,5 +39,7 @@ export class GetIncomeComponent implements OnInit {
           console.log(err.message)
         }
       )
+    }
+    
   }
 }

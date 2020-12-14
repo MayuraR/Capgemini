@@ -15,7 +15,13 @@ import { GetmemberComponent } from './members/getmember/getmember.component';
 import { MemberParentComponent } from './members/member-parent/member-parent.component';
 import { MembersComponent } from './members/members/members.component';
 import { UpdatememberComponent } from './members/updatemember/updatemember.component';
-import { RoomreservationComponent } from './roomreservation/roomreservation.component';
+import { AddreservationComponent } from './roomreservation/addreservation/addreservation/addreservation.component';
+import { AvailableComponent } from './roomreservation/available/available/available.component';
+import { DeletereservationComponent } from './roomreservation/deletereservation/deletereservation/deletereservation.component';
+import { GetreservationComponent } from './roomreservation/getreservation/getreservation/getreservation.component';
+import { ParentRoomreservationComponent } from './roomreservation/parent-roomreservation/parent-roomreservation/parent-roomreservation.component';
+import { ReservationComponent } from './roomreservation/reservation/reservation/reservation.component';
+import { UpdatereservationComponent } from './roomreservation/updatereservation/updatereservation/updatereservation.component';
 import { SignupComponent } from './signup/signup.component';
 import { StaffComponent } from './staff/staff.component';
 
@@ -78,8 +84,16 @@ const routes: Routes = [
   
   {
     path : 'roomreservation', 
-    component: RoomreservationComponent,
-    canActivate: [AuthGuard]
+    component: ParentRoomreservationComponent,
+    canActivate: [AuthGuard],
+    children:[
+      {path:'', component: ReservationComponent},
+      {path: 'addReservation', component:AddreservationComponent},
+      {path: 'available', component:AvailableComponent},
+      {path: 'deleteReservation', component:DeletereservationComponent},
+      {path: 'getReservation', component: GetreservationComponent},
+      {path: 'updateReservation', component:UpdatereservationComponent}
+    ]
   }
 ];
 

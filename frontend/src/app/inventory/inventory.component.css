@@ -1,5 +1,5 @@
 div{
-    background-color: whitesmoke;
+    
     color: #333333;
 }
 app-navbar{
@@ -21,7 +21,7 @@ a:hover{
     height: 500px;
 }
 h1{
-    color: whitesmoke;
+    color: #333333;
     padding: 150px 0;
     font-weight: 400;
 }
@@ -31,7 +31,9 @@ h1{
 .btn{
     padding: 10px;
     margin-right: 10px;
+    
 }
+
 table .btn{
     margin: 2px;
-  }
+}

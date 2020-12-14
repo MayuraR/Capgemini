@@ -1,22 +1,21 @@
-<div>
+<div class="wrapper"> 
   <app-navbar></app-navbar>
   <div class="container">
 
-    <div class="jumbotron justify-content-center ">
-        <h1 class="display-3">Inventory</h1>
-    </div>
+        <h1 class="display-3 ">Inventory Management</h1>
   
   </div>
 
-  <br><br>
     
     <div class="container">
       <button class="btn btn-md btn-outline-primary" data-toggle="modal" data-target="#addModal">Add</button>
       <button class="btn btn-md btn-outline-success" data-toggle="modal" data-target="#getModal">Get by item</button>
-      <table *ngIf = 'display' class="table table-bordered table-striped">
+      <br> <br> <br>
+      <table *ngIf = 'display' class="table table-bordered table-striped ">
         <thead>
-        <tr>
+        <tr class="table-success">
           <th>ID</th>
+          <th>Item</th>
           <th>Date</th>
           <th>Area</th>
           <th>Quantity</th>
@@ -26,16 +25,18 @@
         <tbody>
         <tr *ngFor="let item of inventory">
           <td><span>{{item._id}}</span></td>
+          <td><span>{{item.item}}</span></td>
           <td><span>{{item.date}}</span></td>
           <td><span>{{item.area}}</span></td>
           <td><span>{{item.quantity}}</span></td>
           <td>
-            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" (click)=assign(item)>Edit</button>
-            <button class="btn btn-sm btn-danger" (click)=deleteInventory(item)>Delete</button>
+            <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#updateModal" (click)=assign(item)>Edit</button>
+            <button class="btn btn-sm btn-outline-danger" (click)=deleteInventory(item)>Delete</button>
           </td>
         </tr>
         </tbody>
       </table>
+      <br> <br>
     </div>
   
   

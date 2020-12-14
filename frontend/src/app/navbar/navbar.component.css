@@ -20,7 +20,5 @@ a{
     color: whitesmoke;
 }
 a:hover{
-    background-color: whitesmoke;
-    color: black;
     cursor: pointer;
 }

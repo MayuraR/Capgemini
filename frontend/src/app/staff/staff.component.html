@@ -1,1 +1,200 @@
-<p>staff works!</p>
+<div>
+    <app-navbar></app-navbar>
+    <div class="container">
+  
+      <div class="jumbotron justify-content-center ">
+          <h1 class="display-3">Staff</h1>
+      </div>
+    
+    </div>
+  
+    <br><br>
+      
+      <div class="container-fluid">
+        <button class="btn btn-md btn-outline-primary" data-toggle="modal" data-target="#addModal">Add Staff</button>
+        <button class="btn btn-md btn-outline-success" data-toggle="modal" data-target="#getByDepartmentModal">Filter By Department</button>
+        <table  class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Gender</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Verification Document</th>
+            
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let member of staff">
+            <td><span>{{member._id}}</span></td>
+            <td><span>{{member.name}}</span></td>
+            <td><span>{{member.department}}</span></td>
+            <td><span>{{member.gender}}</span></td>
+            <td><span>{{member.contact}}</span></td>
+            <td><span>{{member.email}}</span></td>
+            <td><span>{{member.salary}}</span></td>
+            <td><span>{{member.verificationDoc}}</span></td>
+            <td>
+              <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" (click)=assign(member)>Edit</button>
+              <button class="btn btn-sm btn-danger" (click)=deleteStaff(member)>Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <br> <br> <br>
+    
+  
+    <!--MODALS-->
+    <!--add modal-->
+  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">ADD</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form">
+            <div class="form-group ">
+              <label for="name">Enter name:</label>
+              <input type="text" #name=ngModel class="form-control col-xs-4" [(ngModel)]="addData.name" name="name" placeholder="Enter Name" required>
+              <small [class.d-none] = "name.untouched || name.valid" class="text-danger">Name is required</small>
+            </div>
+            <div class="form-group ">
+                <label for="department">Department:</label>
+                <input type="text" #department=ngModel class="form-control col-xs-4" [(ngModel)]="addData.department" name="department" placeholder="Enter Department" required>
+                <small [class.d-none] = "department.untouched || department.valid" class="text-danger">Department is required</small>
+            </div>
+            <div class="form-group ">
+                <label for="gender">Gender:</label>
+                <input type="text" #gender=ngModel class="form-control col-xs-4" [(ngModel)]="addData.gender" name="gender" placeholder="Enter Gender" required>
+                <small [class.d-none] = "gender.untouched || gender.valid" class="text-danger">Gender is required</small>
+            </div>
+
+            <div class="form-group ">
+                <label for="contact">Contact:</label>
+                <input type="number" #contact=ngModel class="form-control col-xs-4" [(ngModel)]="addData.contact" name="contact" placeholder="Enter contact" required>
+                <small [class.d-none] = "contact.untouched || contact.valid" class="text-danger">Contact is required</small>
+            </div>
+            
+            <div class="form-group ">
+                <label for="email">Email:</label>
+                <input type="email" #email=ngModel class="form-control col-xs-4" [(ngModel)]="addData.email" name="email" placeholder="Enter Email" required>
+                <small [class.d-none] = "email.untouched || email.valid" class="text-danger">Email is required</small>
+            </div>
+
+            <div class="form-group ">
+                <label for="department">Verification Documents Submitted:</label>
+                <input type="text" #doc=ngModel class="form-control col-xs-4" [(ngModel)]="addData.verificationDoc" name="doc" placeholder="Enter Documents" required>
+                <small [class.d-none] = "doc.untouched || doc.valid" class="text-danger">Documents are required</small>
+            </div>
+          </form>
+
+          <div class="form-group ">
+            <label for="salary">Salary:</label>
+            <input type="number" #salary=ngModel class="form-control col-xs-4" [(ngModel)]="addData.salary" name="salary" placeholder="Enter Annual Salary" required>
+            <small [class.d-none] = "salary.untouched || salary.valid" class="text-danger">salary is required</small>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)='addStaff()' data-dismiss="modal" [disabled]='name.invalid || department.invalid '>Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--get Modal -->
+  <div class="modal fade" id="getByDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Get Members in a Department</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form">
+            <div class="form-group ">
+              <label for="department">Enter department:</label>
+              <input type="text" #department=ngModel class="form-control col-xs-4" [(ngModel)]="getData.department" name="department" placeholder="Enter department" required>
+              <small [class.d-none] = "department.untouched || department.valid" class="text-danger">Department is required</small>
+            </div>          
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='getMember()'>Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <!--update modal-->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Update Inventory</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="form">
+                <div class="form-group ">
+                    <label for="name">Enter name:</label>
+                    <input type="text" #name=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.name" name="name" placeholder="Enter Name" required>
+                    <small [class.d-none] = "name.untouched || name.valid" class="text-danger">Name is required</small>
+                  </div>
+                  <div class="form-group ">
+                      <label for="department">Department:</label>
+                      <input type="text" #department=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.department" name="department" placeholder="Enter Department" required>
+                      <small [class.d-none] = "department.untouched || department.valid" class="text-danger">Department is required</small>
+                  </div>
+                  <div class="form-group ">
+                      <label for="gender">Gender:</label>
+                      <input type="text" #gender=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.gender" name="gender" placeholder="Enter Gender" required>
+                      <small [class.d-none] = "gender.untouched || gender.valid" class="text-danger">Gender is required</small>
+                  </div>
+      
+                  <div class="form-group ">
+                      <label for="contact">Contact:</label>
+                      <input type="number" #contact=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.contact" name="contact" placeholder="Enter contact" required>
+                      <small [class.d-none] = "contact.untouched || contact.valid" class="text-danger">Contact is required</small>
+                  </div>
+                  
+                  <div class="form-group ">
+                      <label for="email">Email:</label>
+                      <input type="email" #email=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.email" name="email" placeholder="Enter Email" required>
+                      <small [class.d-none] = "email.untouched || email.valid" class="text-danger">Email is required</small>
+                  </div>
+      
+                  <div class="form-group ">
+                      <label for="department">Verification Documents Submitted:</label>
+                      <input type="text" #doc=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.verificationDoc" name="doc" placeholder="Enter Documents" required>
+                      <small [class.d-none] = "doc.untouched || doc.valid" class="text-danger">Documents are required</small>
+                  </div>
+      
+                <div class="form-group ">
+                  <label for="salary">Salary:</label>
+                  <input type="number" #salary=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.salary" name="salary" placeholder="Enter Annual Salary" required>
+                  <small [class.d-none] = "salary.untouched || salary.valid" class="text-danger">salary is required</small>
+              </div>
+                 
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)='updateStaff()' data-dismiss="modal" >Update</button>
+          </div>
+        </div>
+      </div>
+    </div>

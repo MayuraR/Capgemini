@@ -14,6 +14,7 @@ const requireAuth = (req, res, next) => {
     return res.status(401).send('Unauthorized request')    
   }
   r = payload.subject
+  //console.log(r)
   next()
 };
 

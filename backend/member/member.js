@@ -32,7 +32,7 @@ app.get('/members', requireAuth, (req, res) =>{
 })
 
 //Get member by id
-app.get('/members/:id',requireAuth, (req, res) =>{
+app.get('/members/:id',(req, res) =>{
     Member.find({ _id : req.params.id})
         .then((member) => res.send(member))
         .catch((err) => console.log(err))

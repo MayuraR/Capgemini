@@ -31,10 +31,10 @@ var room = r.model('room', roomSchema);
 //methods: ADD, GET, UPDATE, DELETE
 
 //Get all reservation
-app.get('/room', requireAuth, authRole('Manager', 'Owner'), (req, res) =>{
+app.get('/room', requireAuth, (req, res) =>{
     roomReservation.find({})
         .then((member) => res.send(member))
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err))  
 })
 
 //Get reservation by id
@@ -46,7 +46,7 @@ app.get('/room/:id', requireAuth, authRole([]), (req, res) =>{
 
 //find room available
 //http://localhost:3500/available?start=2020-12-09&&end=2020-12-11
-app.get('/available',requireAuth, authRole([]), (req, res) =>{
+app.get('/available',requireAuth, (req, res) =>{
     const matchStart = new Date(req.query.start)
     const matchEnd = new Date(req.query.end)
     available = [] 
@@ -73,7 +73,7 @@ app.get('/available',requireAuth, authRole([]), (req, res) =>{
         })
         res.send(available)
     }    )
-    .catch((err) => console.log(err))
+    .catch((err) => res.send(err))
     
    
 })
@@ -116,7 +116,7 @@ app.post('/room', (req, res) =>{
         })
 
 //update (PATCH)
-app.patch('/room/:id',requireAuth, authRole('Manager', 'Owner'), (req, res) => {
+app.patch('/room/:id',requireAuth, (req, res) => {
     let oldCheckIn; 
     let index
     roomReservation.findOneAndUpdate( {_id : req.params.id}, req.body)
@@ -148,7 +148,7 @@ app.patch('/room/:id',requireAuth, authRole('Manager', 'Owner'), (req, res) => {
 })
 
 //delete a room reservation
-app.delete('/room/:id', requireAuth, authRole('Manager', 'Owner'),  (req,res) =>{
+app.delete('/room/:id', requireAuth,   (req,res) =>{
     
     roomReservation.findByIdAndDelete( {_id : req.params.id} )
         .then((reservation) => {     

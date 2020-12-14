@@ -1,0 +1,88 @@
+<div class="container"><div class=" text-center mt-5 ">
+    <h1>Add Reservation</h1>
+</div>
+<div class="row ">
+    <div class="col-lg-7 mx-auto">
+        <div class="card mt-2 mx-auto p-4 bg-light">
+            <div class="card-body bg-light">
+                <div class="container">
+                    <form id="contact-form" role="form">
+                        <div class="controls">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="membershipId">Membership ID</label> 
+                                        <input type="text" #membershipId=ngModel name="membershipId" class="form-control" placeholder="Enter membership ID *" required="required" [(ngModel)]='addReservationData.membershipId'> 
+                                        <small [class.d-none] = "membershipId.untouched || membershipId.valid" class="text-danger">Membership Id is required</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="roomNo">Room Number</label> 
+                                        <input  type="number" #roomNo=ngModel name="roomNo" class="form-control" placeholder="Enter room Number" required="required" [(ngModel)]="addReservationData.roomNo"> 
+                                        <small [class.d-none] = "roomNo.untouched || roomNo.valid" class="text-danger">Room number is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="noOfChildren">Number of Children</label> 
+                                        <input type="number" #noOfChildren=ngModel name="noOfChildren" class="form-control" placeholder="Enter the number of children" required="required" [(ngModel)]="addReservationData.noOfChildren"> 
+                                        <small [class.d-none] = "noOfChildren.untouched || noOfChildren.valid" class="text-danger">Number of children is required</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="noOfAdults">Number of Adults</label> 
+                                        <input type="number" #noOfAdults=ngModel name="noOfAdults"  class="form-control" placeholder="Enter the number of adults" required="required" [(ngModel)]="addReservationData.noOfAdults">
+                                        <small [class.d-none] = "noOfAdults.untouched || noOfAdults.valid" class="text-danger">No of adults is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="checkInDate">Check-In Date</label> 
+                                        <input type="date" #checkInDate=ngModel name="checkInDate" class="form-control" placeholder="Enter check-In Date" required="required" [(ngModel)]="addReservationData.checkInDate">
+                                        <small [class.d-none] = "checkInDate.untouched || checkInDate.valid" class="text-danger">Check-In date is required</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="checkOutDate">Check-Out Date</label> 
+                                        <input  type="date" #checkOutDate=ngModel name="checkOutDate" class="form-control" placeholder="Enter check-Out Date" required="required" [(ngModel)]="addReservationData.checkOutDate">
+                                        <small [class.d-none] = "checkOutDate.untouched || checkOutDate.valid" class="text-danger">Check-Out date is required</small> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="verificationDoc">Document for verification</label> 
+                                        <input type="text" #verificationDoc=ngModel name="verificationDoc" class="form-control" placeholder="Document for verification" required="required" [(ngModel)]="addReservationData.verificationDoc"> 
+                                        <small [class.d-none] = "verificationDoc.untouched || verificationDoc.valid" class="text-danger">Verification Document is required</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"> 
+                                        <label for="additionalRequirements">Additional requirement</label> 
+                                        <input type="text" name="additionalRequirements" class="form-control" placeholder="Add additional requirements" required="required" [(ngModel)]="addReservationData.additionalRequirements"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12"> <button class="btn btn-success btn-send pt-2 btn-block " (click)="addReservation()">ADD RESERVATION</button> </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12"> <button class="btn btn-success btn-send pt-2 btn-block " routerLink="/roomreservation">BACK</button> </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    </div> 
+</div>
+</div>

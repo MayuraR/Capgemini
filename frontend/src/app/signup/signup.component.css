@@ -8,7 +8,7 @@
     height: 98%;
     width: 60%;
     left: 0;
-    opacity: 0.75;
+    opacity: 1;
     font-size: 1.5em;
 }
 .zoom:hover {
@@ -54,4 +54,7 @@ label{
 .btn:hover{
     color: whitesmoke;
     background-color: darkblue;
+}
+.wrapper{
+    background-color: #333333;
 }

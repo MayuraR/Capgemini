@@ -17,7 +17,6 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { FinanceComponent } from './finance/finance/finance.component';
 import { StaffComponent } from './staff/staff.component';
 import { MembersComponent } from './members/members/members.component';
-import { RoomreservationComponent } from './roomreservation/roomreservation.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
@@ -29,6 +28,15 @@ import { GetmemberComponent } from './members/getmember/getmember.component';
 import { UpdatememberComponent } from './members/updatemember/updatemember.component';
 import { MemberParentComponent } from './members/member-parent/member-parent.component';
 import { FinanceParentComponent } from './finance/finance-parent/finance-parent.component';
+import { ParentRoomreservationComponent } from './roomreservation/parent-roomreservation/parent-roomreservation/parent-roomreservation.component';
+import { AddreservationComponent } from './roomreservation/addreservation/addreservation/addreservation.component';
+import { UpdatereservationComponent } from './roomreservation/updatereservation/updatereservation/updatereservation.component';
+import { DeletereservationComponent } from './roomreservation/deletereservation/deletereservation/deletereservation.component';
+import { AvailableComponent } from './roomreservation/available/available/available.component';
+import { GetreservationComponent } from './roomreservation/getreservation/getreservation/getreservation.component';
+import { ReservationComponent } from './roomreservation/reservation/reservation/reservation.component';
+import { RoomReservationService } from './services/room-reservation.service';
+import { StaffService } from './services/staff.service';
 
 
 @NgModule({
@@ -41,7 +49,6 @@ import { FinanceParentComponent } from './finance/finance-parent/finance-parent.
     FinanceComponent,
     StaffComponent,
     MembersComponent,
-    RoomreservationComponent,
     NavbarComponent,
     FooterComponent,
     LandingComponent,
@@ -53,6 +60,13 @@ import { FinanceParentComponent } from './finance/finance-parent/finance-parent.
     UpdatememberComponent,
     MemberParentComponent,
     FinanceParentComponent,
+    ParentRoomreservationComponent,
+    AddreservationComponent,
+    UpdatereservationComponent,
+    DeletereservationComponent,
+    AvailableComponent,
+    GetreservationComponent,
+    ReservationComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +74,7 @@ import { FinanceParentComponent } from './finance/finance-parent/finance-parent.
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthserviceService, AuthGuard, FinanceService, InventoryService, MembersService,
+  providers: [AuthserviceService, AuthGuard, FinanceService, InventoryService, MembersService,RoomReservationService, StaffService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
