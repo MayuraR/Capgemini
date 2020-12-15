@@ -1,0 +1,71 @@
+@import '~font-awesome/css/font-awesome.css';
+.page-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar,.container{
+    justify-content: space-between;
+    color: #333333;
+}
+
+ul{
+    display: flex;
+    width: auto;
+    margin-top: 0;
+    list-style-type: none;
+    font-size: 1.5em;
+}
+  
+li{
+    padding: 10px 10px;
+}
+a{
+    text-decoration: none;
+    text-align: center;
+    color: whitesmoke;
+}
+a:hover{
+    cursor: pointer;
+}
+h3{
+    font-family: 'Dancing Script', cursive;
+}
+.membership{
+    background-color:#333333;
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+    color: whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    margin: auto auto;
+}
+.membership:hover{
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+}
+video{
+    width: 100%
+}
+section{
+    color: #333333;
+}
+.card-title{
+    padding: 10%;
+    padding-bottom: 0%;
+}
+.card-text{
+    padding: 10%;
+}
+.card-link{
+    text-decoration: none;
+    text-align: center;
+    color: black
+
+}
+
+.member{
+    text-align: center;
+    font-size: 1.5em;
+}

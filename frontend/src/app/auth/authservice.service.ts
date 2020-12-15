@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import jwtDecode, { JwtPayload } from 'jwt-decode'
 
 
 @Injectable({
@@ -36,6 +37,12 @@ export class AuthserviceService{
 
   signUpUser(user:any){
     return this.http.post<any>(this._signUpUrl, user)
+  }
+
+  getRole(token){
+    const decoded = jwtDecode<JwtPayload>(token);
+    return decoded
+
   }
 }
 

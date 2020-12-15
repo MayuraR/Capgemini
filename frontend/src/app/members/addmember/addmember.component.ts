@@ -30,4 +30,8 @@ export class AddmemberComponent implements OnInit {
       )
   }
 
+  goBack(){
+    window.history.back()
+  }
+
 }

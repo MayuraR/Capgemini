@@ -14,12 +14,7 @@ a:hover{
     font-weight: bold;
     cursor: pointer;
 }
-.jumbotron{
-    background-image: url('../../assets/inventory2.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 500px;
-}
+
 h1{
     color: #333333;
     padding: 150px 0;

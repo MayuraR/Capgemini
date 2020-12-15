@@ -1,0 +1,146 @@
+<div class="page-container">
+
+<nav class="navbar flex-column flex-md-row py-3 px-3">
+    <h3 class="py-3 px-3"> C'est la vie </h3>
+    <ul class="justify-content-right">
+        <li ><a  >Book Now</a></li>
+        <li ><a  (click)= "signUp()">SignUp</a></li>
+        <li *ngIf = '!_auth.loggedIn()'><a (click)='signIn()'>Sign in</a></li>
+        <li *ngIf = '_auth.loggedIn()'><a  (click)= "_auth.logOut()">Logout</a></li>
+        <li ><button class="membership" (click)="addMember()">Free Membership</button></li>
+      </ul>
+</nav>
+
+<video src="../../assets/video.mp4" controls ></video>
+<br>
+
+<section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+          <div class="col-6">
+              <h2 class="mb-3">About Us </h2>
+          </div>
+          <div class="col-6 text-right">
+              <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                  <i class="fa fa-arrow-left"></i>
+              </a>
+              <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                  <i class="fa fa-arrow-right"></i>
+              </a>
+          </div>
+          <div class="col-12">
+              <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+  
+                  <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <div class="row">
+  
+                              <div class="col-md-4 mb-3">
+                                  <div class="card">
+                                      <img class="img-fluid" alt="100%x280" src="../../assets/culinary.jpg">
+                                      <div class="card-body">
+                                          <h4 class="card-title">Culinary Experience</h4>
+                                          <p class="card-text">Two on-site restaurants and bars help you improve your experience</p>
+  
+                                      </div>
+  
+                                  </div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                  <div class="card">
+                                      <img class="img-fluid" alt="100%x280" src="../../assets/getaway.jpg">
+                                      <div class="card-body">
+                                          <h4 class="card-title">Getaway</h4>
+                                          <p class="card-text">Treat yourself and relax with a perfect getaway.</p>
+  
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                  <div class="card">
+                                      <img class="img-fluid" alt="100%x280" src="../../assets/spa.jpg">
+                                      <div class="card-body">
+                                          <h4 class="card-title">Spa</h4>
+                                          <p class="card-text">Take some time out and pamper yourself with </p>
+  
+                                      </div>
+                                  </div>
+                              </div>
+  
+                          </div>
+                      </div>
+                      <div class="carousel-item">
+                          <div class="row">
+  
+                              <div class="col-md-4 mb-3">
+                                  <div class="card">
+                                      <img class="img-fluid" alt="100%x280" src="../../assets/gym.jpg">
+                                      <div class="card-body">
+                                          <h4 class="card-title">Gym</h4>
+                                          <p class="card-text">No excuses to skip your workouts. Fitness is always a priority.</p>
+  
+                                      </div>
+  
+                                  </div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                  <div class="card">
+                                      <img class="img-fluid" alt="100%x280" src="../../assets/room_custhome.jpg">
+                                      <div class="card-body">
+                                          <h4 class="card-title">Our rooms</h4>
+                                          <p class="card-text">Designed for extreme comfort and relaxation.</p>
+  
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                  <div class="card">
+                                      <img class="img-fluid" alt="100%x280" src="../../assets/library.jpg">
+                                      <div class="card-body">
+                                          <h4 class="card-title">Library</h4>
+                                          <p class="card-text">A quiet place for reading and relaxing, with books, magazines.</p>
+  
+                                      </div>
+                                  </div>
+                              </div>
+  
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  </section>
+  
+</div>
+
+<div class="container">
+    <h2>Our culinary experience</h2>
+    <br>
+    <video src="../../assets/video2.mp4" controls></video>
+</div>
+<br>
+
+<div class="container">
+    <h2 class="text-align-center">Covid -19 Measures</h2>
+    <div class="col-md-4 mb-3 mx-auto">
+        <div class="card">
+            <img class="img-fluid" alt="100%x280" src="../../assets/covid.jpg">
+            <div class="card-body">
+                <h4 class="card-title">Covid-19 Precautions</h4>
+                <p class="card-text"><a class="card-link" href="">Click here to read all the precautions taken.</a></p>
+    
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container member">
+    <h2> Are you interested in becoming a member?</h2>
+    <br>
+    <button class="membership" (click)="addMember()">Free Membership</button>
+</div>
+<br>
+
+<app-footer-dark></app-footer-dark>

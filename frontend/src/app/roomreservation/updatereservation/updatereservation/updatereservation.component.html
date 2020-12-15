@@ -60,14 +60,14 @@
                         <div class="col-md-6">
                             <div class="form-group"> 
                                 <label for="checkInDate">Check-In Date</label> 
-                                <input type="date" #checkInDate=ngModel name="checkInDate" class="form-control" placeholder="Enter check-In Date" required="required" [(ngModel)]="reservationData.checkInDate" value="{{reservationData.checkInDate | date:'yyyy-MM-dd'}}">
+                                <input type="date" #checkInDate=ngModel name="checkInDate" class="form-control" placeholder="Enter check-In Date" required="required" [ngModel]="reservationData.checkInDate | date:'yyyy-MM-dd'" (ngModelChange)="reservationData.checkInDate = $event">
                                 <small [class.d-none] = "checkInDate.untouched || checkInDate.valid" class="text-danger">Check-In date is required</small>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group"> 
                                 <label for="checkOutDate">Check-Out Date</label> 
-                                <input  type="date" #checkOutDate=ngModel name="checkOutDate" class="form-control" placeholder="Enter check-Out Date" required="required" [(ngModel)]="reservationData.checkOutDate">
+                                <input  type="date" #checkOutDate=ngModel name="checkOutDate" class="form-control" placeholder="Enter check-Out Date" required="required"[ngModel]="reservationData.checkOutDate | date:'yyyy-MM-dd'" (ngModelChange)="reservationData.checkOutDate = $event">
                                 <small [class.d-none] = "checkOutDate.untouched || checkOutDate.valid" class="text-danger">Check-Out date is required</small> 
                             </div>
                         </div>

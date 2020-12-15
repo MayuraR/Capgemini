@@ -15,7 +15,14 @@ export class NavbarComponent implements OnInit {
   }
 
   home(){
-    this.router.navigate(['home']);
+    let decoded:any = this._auth.getRole(localStorage.getItem('token'))
+    if(decoded.subject === "customer"){
+      this.router.navigate(['/customerHome'])
+    }
+    else{
+      this.router.navigate(['home']);
+    }
+    
   }
 
 }

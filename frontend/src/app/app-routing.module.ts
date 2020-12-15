@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { CustomerSignUpComponent } from './customer-sign-up/customer-sign-up.component';
 import { AddBillComponent } from './finance/add-bill/add-bill.component';
 import { FinanceParentComponent } from './finance/finance-parent/finance-parent.component';
 import { FinanceComponent } from './finance/finance/finance.component';
@@ -72,13 +74,12 @@ const routes: Routes = [
   },
   {
     path : 'members', 
-    component: MemberParentComponent,
-    canActivate: [AuthGuard],
+    component: MemberParentComponent,    
     children:[
-      {path:'', component: MembersComponent},
+      {path:'', component: MembersComponent,canActivate: [AuthGuard],},
       {path: 'addMember', component: AddmemberComponent},
-      {path : 'getMember', component: GetmemberComponent},
-      {path : 'updateMember', component: UpdatememberComponent},
+      {path : 'getMember', component: GetmemberComponent, canActivate: [AuthGuard],},
+      {path : 'updateMember', component: UpdatememberComponent, canActivate: [AuthGuard],},
     ]
   },
   
@@ -94,6 +95,14 @@ const routes: Routes = [
       {path: 'getReservation', component: GetreservationComponent},
       {path: 'updateReservation', component:UpdatereservationComponent}
     ]
+  },
+  {
+    path: 'customerHome',
+    component: CustomerHomeComponent
+  },
+  {
+    path: 'signUp',
+    component:CustomerSignUpComponent
   }
 ];
 

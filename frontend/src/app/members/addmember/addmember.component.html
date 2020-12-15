@@ -40,7 +40,7 @@
         <br>
 
         <button type="button" class="btn" (click) = "addMembers()" data-toggle="modal" data-target="#Modal1" [disabled]="email.invalid || contact.invalid || name.invalid ">Add</button>
-        <button type="button" class="btn ml-5" routerLink="/members">Back</button>
+        <button type="button" class="btn ml-5" (click)="goBack()">Back</button>
        </form>
       
     </div>

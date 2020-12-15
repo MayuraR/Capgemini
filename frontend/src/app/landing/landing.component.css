@@ -1,7 +1,31 @@
-.display-3{
+.text{
     position: fixed;
-    top: 80%;
-    left: 20%;
+    top: 45%;
+    left: 30%;
+}
+.name{
+    position: absolute;
+    top: 30%;
+    left: 45%;
+    font-family: 'Dancing Script', cursive;
+}
+p{
+    text-transform: uppercase;
+}
+.btn{
+    background-color:transparent;
+    border: 2px solid whitesmoke;
+    border-radius: 30px;
+    color: whitesmoke;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    margin: auto auto;
+}
+.btn:hover{
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
 }
 .image{
     

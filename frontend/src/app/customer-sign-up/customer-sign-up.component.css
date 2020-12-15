@@ -1,0 +1,33 @@
+.card{
+    color: #333333;
+    background-color: whitesmoke;
+    border: transparent;
+}
+h2{
+    color: #333333;
+    text-align: center;
+}
+.wrapper{
+    padding-top: 10%;
+}
+button{
+    background-color:transparent;
+    border: 2px solid #26af5f;
+    border-radius: 30px;
+    color: #2ecc71;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 5%;
+}
+input{
+    background: transparent;
+    border-width: 2px;
+    border-color: gray;
+    width: 350px;
+}
+.btn1{
+    margin-right: 30%;
+}
+label{
+    font-weight: 600;
+}

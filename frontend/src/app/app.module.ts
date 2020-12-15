@@ -18,7 +18,6 @@ import { FinanceComponent } from './finance/finance/finance.component';
 import { StaffComponent } from './staff/staff.component';
 import { MembersComponent } from './members/members/members.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
 import { AddBillComponent } from './finance/add-bill/add-bill.component';
 import { GetIncomeComponent } from './finance/get-income/get-income.component';
@@ -37,6 +36,10 @@ import { GetreservationComponent } from './roomreservation/getreservation/getres
 import { ReservationComponent } from './roomreservation/reservation/reservation/reservation.component';
 import { RoomReservationService } from './services/room-reservation.service';
 import { StaffService } from './services/staff.service';
+import { FooterWhiteComponent } from './footer-white/footer-white.component';
+import { FooterDarkComponent } from './footer-dark/footer-dark.component';
+import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { CustomerSignUpComponent } from './customer-sign-up/customer-sign-up.component';
 
 
 @NgModule({
@@ -50,7 +53,6 @@ import { StaffService } from './services/staff.service';
     StaffComponent,
     MembersComponent,
     NavbarComponent,
-    FooterComponent,
     LandingComponent,
     AddBillComponent,
     GetIncomeComponent,
@@ -67,6 +69,10 @@ import { StaffService } from './services/staff.service';
     AvailableComponent,
     GetreservationComponent,
     ReservationComponent,
+    FooterWhiteComponent,
+    FooterDarkComponent,
+    CustomerHomeComponent,
+    CustomerSignUpComponent,
   ],
   imports: [
     BrowserModule,

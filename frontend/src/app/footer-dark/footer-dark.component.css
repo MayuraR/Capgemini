@@ -1,0 +1,21 @@
+footer { 
+     
+    color: #333333;
+}
+img{
+    height: 40px; 
+    width: 40px;
+}
+
+h6{
+    margin-left: 150px;
+    margin-right: 300px;
+}
+h5{
+    margin-left: 150px;
+    margin-right: 300px;
+}
+.name{
+    
+    font-family: 'Dancing Script', cursive;
+}

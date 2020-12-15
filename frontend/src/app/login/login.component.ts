@@ -23,7 +23,16 @@ export class LoginComponent implements OnInit {
       res =>{
         localStorage.setItem('token',  res.token)
         console.log(this._auth.getToken())
-        this.router.navigate(['/home'])
+
+        let decoded:any =this._auth.getRole(this._auth.getToken())
+
+        if (decoded.subject === "customer"){
+          this.router.navigate(['/customerHome'])
+        }
+        else{
+          this.router.navigate(['/home'])
+        }
+        
       },
       err =>{
         this.handleError(err)

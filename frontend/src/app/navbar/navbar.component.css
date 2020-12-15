@@ -22,3 +22,6 @@ a{
 a:hover{
     cursor: pointer;
 }
+h3{
+    font-family: 'Dancing Script', cursive;
+}

@@ -2,17 +2,21 @@
     <app-navbar></app-navbar>
     <div class="container">
   
-      <div class="jumbotron justify-content-center ">
+      
           <h1 class="display-3">Staff</h1>
-      </div>
+      
     
+    </div>
+
+    <div class="container">
+      <button class="btn btn-md btn-outline-primary" data-toggle="modal" data-target="#addModal">Add Staff</button>
+        <button class="btn btn-md btn-outline-success" data-toggle="modal" data-target="#getByDepartmentModal">Filter By Department</button>
     </div>
   
     <br><br>
       
       <div class="container-fluid">
-        <button class="btn btn-md btn-outline-primary" data-toggle="modal" data-target="#addModal">Add Staff</button>
-        <button class="btn btn-md btn-outline-success" data-toggle="modal" data-target="#getByDepartmentModal">Filter By Department</button>
+        
         <table  class="table table-bordered table-striped">
           <thead>
           <tr>
@@ -38,8 +42,8 @@
             <td><span>{{member.salary}}</span></td>
             <td><span>{{member.verificationDoc}}</span></td>
             <td>
-              <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#updateModal" (click)=assign(member)>Edit</button>
-              <button class="btn btn-sm btn-danger" (click)=deleteStaff(member)>Delete</button>
+              <button class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#updateModal" (click)=assign(member)>Edit</button>
+              <button class="btn btn-sm btn-outline-danger" (click)=deleteStaff(member)>Delete</button>
             </td>
           </tr>
           </tbody>
