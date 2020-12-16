@@ -25,4 +25,7 @@ export class RoomReservationService {
   deleteReservation(id){
     return this.http.delete(`${this._url}/room/${id}`, { responseType: "text" } );
   }
+  setRate(data){
+    return this.http.patch(`${this._url}/setRate/${data.roomNo}`, { "rate" : data.rate}, { responseType: "text" })
+  }
 }

@@ -40,6 +40,9 @@ import { FooterWhiteComponent } from './footer-white/footer-white.component';
 import { FooterDarkComponent } from './footer-dark/footer-dark.component';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { CustomerSignUpComponent } from './customer-sign-up/customer-sign-up.component';
+import { SetRateComponent } from './roomreservation/set-rate/set-rate.component';
+import { CustomerBookingComponent } from './customer-booking/customer-booking.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -73,12 +76,15 @@ import { CustomerSignUpComponent } from './customer-sign-up/customer-sign-up.com
     FooterDarkComponent,
     CustomerHomeComponent,
     CustomerSignUpComponent,
+    SetRateComponent,
+    CustomerBookingComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthserviceService, AuthGuard, FinanceService, InventoryService, MembersService,RoomReservationService, StaffService,
   {

@@ -179,14 +179,30 @@ app.delete('/room/:id', requireAuth,   (req,res) =>{
     
 })
 
-app.post('/addRoom',requireAuth, authRole('Manager', 'Owner'),  (req, res) =>{
+app.post('/addRoom',  (req, res) =>{
     
     (new room ({
         "roomNo" : req.body.roomNo,
-        "reserved" : req.body.reserved
+        "reserved" : req.body.reserved,
+        "rate": req.body.rate
     }))
     .save()
-    .then(res.send(`room ${req.body.roomNo} is added`))
+    .then(res.send(`room ${req.body.roomNo} is added `))
+})
+
+//http://localhost:3500/setRate/6
+app.patch('/setRate/:roomNo', (req, res) =>{
+
+    room.findOneAndUpdate( {"roomNo" : req.params.roomNo} , {"rate" : req.body.rate })
+                            .then(res.send("Done Update"))
+                            .catch(err => console.log(err))
+
+})
+
+app.get('/getRate/:roomNo', (req, res) =>{
+    room.findOne({"roomNo" : req.params.roomNo})
+        .then( (rooms) => res.send(rooms) )
+        .catch( (err) => res.send(err))
 })
 
 

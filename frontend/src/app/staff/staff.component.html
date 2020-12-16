@@ -51,6 +51,8 @@
       </div>
       <br> <br> <br>
     
+
+      <app-footer-dark></app-footer-dark>
   
     <!--MODALS-->
     <!--add modal-->
@@ -75,15 +77,19 @@
                 <input type="text" #department=ngModel class="form-control col-xs-4" [(ngModel)]="addData.department" name="department" placeholder="Enter Department" required>
                 <small [class.d-none] = "department.untouched || department.valid" class="text-danger">Department is required</small>
             </div>
-            <div class="form-group ">
-                <label for="gender">Gender:</label>
-                <input type="text" #gender=ngModel class="form-control col-xs-4" [(ngModel)]="addData.gender" name="gender" placeholder="Enter Gender" required>
-                <small [class.d-none] = "gender.untouched || gender.valid" class="text-danger">Gender is required</small>
-            </div>
+            <div class="form-group">
+              <p>Gender:</p>
+                  <input type="radio" id="male" name="gender" value="Male" [(ngModel)]="addData.gender">
+                  <label for="male">Male</label><br>
+                  <input type="radio" id="female" name="gender" value="Female"  [(ngModel)]="addData.gender" checked='checked'>
+                  <label for="female">Female</label><br>
+                  <input type="radio" id="other" name="gender" value="Other" [(ngModel)]="addData.gender">
+                  <label for="other">Other</label>
+          </div>
 
             <div class="form-group ">
                 <label for="contact">Contact:</label>
-                <input type="number" #contact=ngModel class="form-control col-xs-4" [(ngModel)]="addData.contact" name="contact" placeholder="Enter contact" required>
+                <input type="tel" pattern="[0-9]{10}" #contact=ngModel class="form-control col-xs-4" [(ngModel)]="addData.contact" name="contact" placeholder="Enter contact" required>
                 <small [class.d-none] = "contact.untouched || contact.valid" class="text-danger">Contact is required</small>
             </div>
             
@@ -163,15 +169,19 @@
                       <input type="text" #department=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.department" name="department" placeholder="Enter Department" required>
                       <small [class.d-none] = "department.untouched || department.valid" class="text-danger">Department is required</small>
                   </div>
-                  <div class="form-group ">
-                      <label for="gender">Gender:</label>
-                      <input type="text" #gender=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.gender" name="gender" placeholder="Enter Gender" required>
-                      <small [class.d-none] = "gender.untouched || gender.valid" class="text-danger">Gender is required</small>
-                  </div>
+                  <div class="form-group">
+                    <p>Gender:</p>
+                        <input type="radio" id="male" name="gender" value="Male" [(ngModel)]="updateData.gender">
+                        <label for="male">Male</label><br>
+                        <input type="radio" id="female" name="gender" value="Female"  [(ngModel)]="updateData.gender">
+                        <label for="female">Female</label><br>
+                        <input type="radio" id="other" name="gender" value="Other" [(ngModel)]="updateData.gender">
+                        <label for="other">Other</label>
+                </div>
       
                   <div class="form-group ">
                       <label for="contact">Contact:</label>
-                      <input type="number" #contact=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.contact" name="contact" placeholder="Enter contact" required>
+                      <input type="tel" pattern="[0-9]{10}" #contact=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.contact" name="contact" placeholder="Enter contact" required>
                       <small [class.d-none] = "contact.untouched || contact.valid" class="text-danger">Contact is required</small>
                   </div>
                   

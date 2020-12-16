@@ -14,6 +14,10 @@ export class CustomerHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  book(){
+    this.router.navigate(['/customerBooking'])
+  }
+
   addMember(){
     this.router.navigate(['/members/addMember'])
   }

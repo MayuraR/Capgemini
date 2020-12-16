@@ -1,28 +1,42 @@
-.details{
-    background-color: whitesmoke;
+.card{
     color: #333333;
-    padding: 100px 200px;
+    background-color: whitesmoke;
+    border: transparent;
 }
-
-form .btn{
+h2{
+    color: #333333;
+    text-align: center;
+}
+.wrapper{
+    padding-top: 10%;
+}
+button{
     background-color:transparent;
     border: 2px solid #26af5f;
     border-radius: 30px;
     color: #2ecc71;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    margin: 10px auto;
+    margin-left: 5%;
 }
-.modal{
-    color: #333333;
-}
-.form-control{
+input{
     background: transparent;
     border-width: 2px;
     border-color: gray;
-    width: 300px;
+    width: 350px;
 }
-::placeholder{
-    color: lightgray;
+.btn1{
+    margin-right: 30%;
+}
+label{
+    font-weight: 600;
+}
+.wrap{
+    white-space: nowrap
+}
+.wrap input{
+    width:10%
+}
+span{
+    white-space:normal;
 }

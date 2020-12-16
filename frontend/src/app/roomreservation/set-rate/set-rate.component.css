@@ -1,0 +1,26 @@
+
+h1 {
+    margin-bottom: 40px;
+    color: #333
+}
+
+label {
+    color: #333
+}
+
+.btn-send {
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    width: 100%;
+    margin-left: 3px;
+    margin-top: 3px;
+}
+
+.card {
+    margin-left: 10px;
+    margin-right: 10px
+}
+.modal{
+    color: #333333;
+}

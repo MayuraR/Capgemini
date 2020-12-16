@@ -1,5 +1,5 @@
 <div class="container"><div class=" text-center mt-5 ">
-    <h1>Available</h1>
+    <h1>Set Rate</h1>
 </div>
 <div class="row ">
     <div class="col-lg-7 mx-auto">
@@ -8,19 +8,21 @@
                 <div class="container">
                     <form class="form">
                         <div class="form-group ">
-                            <label for="name">Check-In Date</label>
-                            <input type="date" #checkInDate=ngModel class="form-control col-xs-4" [(ngModel)]="available.start" name="checkInDate" [min]="minDate1" required>
-                            <small [class.d-none] = "checkInDate.untouched || checkInDate.valid" class="text-danger">Check-In Date is required</small>
+                            <label for="name">Enter Room Number</label>
+                            <input type="text" #roomNo=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.roomNo" name="roomNo"  required>
+                            <small [class.d-none] = "roomNo.untouched || roomNo.valid" class="text-danger">Room Number is required</small>
                         </div>
+
                         <div class="form-group ">
-                            <label for="name">Check-Out Date</label>
-                            <input type="date" #checkOutDate=ngModel class="form-control col-xs-4" [(ngModel)]="available.end" name="checkOutDate" [min]="minDate2"  required>
-                            <small [class.d-none] = "checkOutDate.untouched || checkOutDate.valid " class="text-danger">Check-Out Date is required</small>
+                            <label for="name">Enter Rate</label>
+                            <input type="text" #rate=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.rate" name="rate"  required>
+                            <small [class.d-none] = "rate.untouched || rate.valid" class="text-danger">Rate is required</small>
                         </div>
+
                         <div class="row">
-                            <div class="col-md-12"> <button class="btn btn-success btn-send pt-2 btn-block " (click)="findAvailable()" data-toggle="modal" data-target="#Modal2">Find Available Rooms</button> </div>
-                        </div>
-                        <br>
+                            <div class="col-md-12"> <button class="btn btn-success btn-send pt-2 btn-block " (click)="setRate()" data-toggle="modal" data-target="#Modal2">Set Rate</button> </div>
+                        </div> 
+                        <br>  <br> 
                         <div class="row">
                             <div class="col-md-12"> <button class="btn btn-success btn-send pt-2 btn-block " routerLink="/roomreservation">BACK</button> </div>
                         </div>
@@ -37,7 +39,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel"> Update </h5>
+          <h5 class="modal-title" id="ModalLabel"> Set Rate </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

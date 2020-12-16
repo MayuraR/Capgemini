@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { CustomerBookingComponent } from './customer-booking/customer-booking.component';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { CustomerSignUpComponent } from './customer-sign-up/customer-sign-up.component';
 import { AddBillComponent } from './finance/add-bill/add-bill.component';
@@ -23,6 +24,7 @@ import { DeletereservationComponent } from './roomreservation/deletereservation/
 import { GetreservationComponent } from './roomreservation/getreservation/getreservation/getreservation.component';
 import { ParentRoomreservationComponent } from './roomreservation/parent-roomreservation/parent-roomreservation/parent-roomreservation.component';
 import { ReservationComponent } from './roomreservation/reservation/reservation/reservation.component';
+import { SetRateComponent } from './roomreservation/set-rate/set-rate.component';
 import { UpdatereservationComponent } from './roomreservation/updatereservation/updatereservation/updatereservation.component';
 import { SignupComponent } from './signup/signup.component';
 import { StaffComponent } from './staff/staff.component';
@@ -93,17 +95,24 @@ const routes: Routes = [
       {path: 'available', component:AvailableComponent},
       {path: 'deleteReservation', component:DeletereservationComponent},
       {path: 'getReservation', component: GetreservationComponent},
-      {path: 'updateReservation', component:UpdatereservationComponent}
+      {path: 'updateReservation', component:UpdatereservationComponent},
+      {path: 'setRate', component:SetRateComponent}
     ]
   },
   {
     path: 'customerHome',
-    component: CustomerHomeComponent
+    component: CustomerHomeComponent,
   },
   {
     path: 'signUp',
     component:CustomerSignUpComponent
+  },
+  {
+    path: "customerBooking", 
+    component:CustomerBookingComponent, 
+    canActivate: [AuthGuard]
   }
+  
 ];
 
 @NgModule({

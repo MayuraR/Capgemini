@@ -1,7 +1,9 @@
 @import '~font-awesome/css/font-awesome.css';
+
 .page-container{
     display: flex;
     flex-direction: column;
+    color: black;
 }
 
 .navbar,.container{
@@ -45,27 +47,42 @@ h1{
     color: black;
     cursor: pointer;
 }
-video{
-    width: 100%
-}
-section{
+
+
+.card{
     color: #333333;
+    background-color: whitesmoke;
+    border: transparent;
 }
-.card-title{
-    padding: 10%;
-    padding-bottom: 0%;
+h2{
+    color: #333333;
+    text-align: center;
 }
-.card-text{
-    padding: 10%;
+.wrapper{
+    padding-top: 5%;
 }
-.card-link{
+button{
+    background-color:transparent;
+    border: 2px solid #26af5f;
+    border-radius: 30px;
+    color: #2ecc71;
+    text-align: center;
     text-decoration: none;
-    text-align: center;
-    color: black
-
+    margin-left: 5%;
 }
-
-.member{
-    text-align: center;
-    font-size: 1.5em;
+input{
+    background: transparent;
+    border-width: 2px;
+    border-color: gray;
+    width: 350px;
+}
+.btn1{
+    margin-right: 30%;
+}
+label{
+    font-weight: 600;
+}
+.form-group a{
+    color: black;
+    text-decoration: none;
 }

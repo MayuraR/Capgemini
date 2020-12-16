@@ -8,7 +8,7 @@ import { MembersService } from '../../services/members.service';
 })
 export class AddmemberComponent implements OnInit {
 
-  addMembersData:any={};
+  addMembersData:any={"gender" :"Female"};
   response:string='';
 
   constructor( private _membersService : MembersService ) { }

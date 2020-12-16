@@ -86,7 +86,17 @@ export class StaffComponent implements OnInit {
     this._staffService.updateStaff(this.updateData)
     .subscribe(
       res=> {
-        this.getMember()
+        
+          this._staffService.getAllStaff()
+        .subscribe(
+          res =>{
+            this.staff = res
+          },
+          err =>{
+            console.log(err)
+          }
+        )
+
         console.log(res)
       },
       err => {

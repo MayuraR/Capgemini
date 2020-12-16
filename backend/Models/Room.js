@@ -10,7 +10,11 @@ var roomSchema = mongoose.Schema( {
             from: Date,
             to: Date
         }
-    ]
+    ],
+    rate :{
+        type : Number,
+        required: true
+    }
 });
 
 module.exports = roomSchema;

@@ -1,0 +1,100 @@
+<div class="page-container">
+
+    <nav class="navbar flex-column flex-md-row py-3 px-3">
+        <h1 class="py-3 px-3"> C'est la vie </h1>
+        <ul class="justify-content-right">
+            <li ><a  (click) ='book()'>Book Now</a></li>
+            <li ><a  (click)= "signUp()">SignUp</a></li>
+            <li *ngIf = '!_auth.loggedIn()'><a (click)='signIn()'>Sign in</a></li>
+            <li *ngIf = '_auth.loggedIn()'><a  (click)= "_auth.logOut()">Logout</a></li>
+            <li ><button class="membership" (click)="addMember()">Free Membership</button></li>
+          </ul>
+    </nav>
+
+
+    <!--Forms-->
+    <div class="wrapper" [class.d-none]="disableAvailable" >
+        <h2>Check Availibility</h2>
+    
+    <div class="container py-3">
+        <div class="col-md-4 mb-3 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form">
+                      <div class="form-group ">
+                        <label for="checkInDate">checkInDate</label>
+                        <input type="date" #checkInDate=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.checkInDate" name="checkInDate"   required>
+                        <small [class.d-none] = "(checkInDate.untouched || checkInDate.valid)" class="text-danger">checkInDate is required</small>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label>checkOutDate</label>
+                        <input type="date" #checkOutDate=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.checkOutDate" name="checkOutDate"   required>
+                        <small [class.d-none] = "checkOutDate.untouched || checkOutDate.valid" class="text-danger">checkOutDate is required</small>
+                      </div>
+                      <br>
+                      <div>
+                        <button type="button" class="btn btn1" (click)="checkAvailibility()" [disabled]='checkInDate.invalid  || checkOutDate.invalid'>Check</button>
+                        <button type="button" class="btn" (click) = "goBack()">Back</button>
+                      </div>
+                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>    
+</div>
+
+
+<div class="wrapper" [class.d-none]="!disableAvailable" >
+    <h2>Reservation Details</h2>
+
+<div class="container py-3">
+    <div class="col-md-4 mb-3 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <form class="form">
+                    <div class="form-group ">
+                        <label for="membershipId">Membership Id</label>
+                        <input type="text" #membershipId=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.membershipId" name="membershipId"  required>
+                        <small>Not a member? <a routerLink="/members/addMember">Become a member Now!</a></small>
+                        <small [class.d-none] = "(membershipId.untouched || membershipId.valid)" class="text-danger">Membership Id is required</small>
+                    </div>
+                  <div class="form-group ">
+                    <label for="noOfChildren">noOfChildren</label>
+                    <input type="number" #noOfChildren=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.noOfChildren" name="noOfChildren" max=2 required>
+                    <small [class.d-none] = "(noOfChildren.untouched || noOfChildren.valid)" class="text-danger">No. of Children is required and should be max 2</small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>noOfAdults</label>
+                    <input type="number" #noOfAdults=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.noOfAdults" name="noOfAdults" max = 3 required>
+                    <small [class.d-none] = "noOfAdults.untouched || noOfAdults.valid" class="text-danger">No. of adults is required</small>
+                  </div>
+                  <div class="form-group">
+                    <label>Verification Document</label>
+                    <input type="text" #verificationDoc=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.verificationDoc" name="verificationDoc" required>
+                    <small [class.d-none] = "verificationDoc.untouched || verificationDoc.valid" class="text-danger">Verification Document is required</small>
+                  </div>
+                  <div class="form-group">
+                    <label>Additional Requirements</label>
+                    <input type="text" #additionalRequirements=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.additionalRequirements" name="additionalRequirements" >
+                  </div>
+                  <br>
+                  <div>
+                    <button type="button" class="btn btn1" (click)="checkAvailibility()" [disabled]='noOfAdults.invalid  || noOfChildren.invalid'>Next</button>
+                  </div>
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br>    
+</div>
+
+
+<app-footer-dark></app-footer-dark>

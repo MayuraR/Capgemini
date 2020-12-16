@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomReservationService } from '../../../services/room-reservation.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-updatereservation',
@@ -18,6 +19,13 @@ export class UpdatereservationComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  now = new Date();
+  year = this.now.getFullYear();
+  month = this.now.getMonth();
+  day = this.now.getDate();
+  minDate1 = moment({year: this.year, month: this.month, day: this.day}).format('YYYY-MM-DD');
+  minDate2 = moment({year: this.year, month: this.month, day: this.day+1}).format('YYYY-MM-DD');
   
   getReservation(){
     this._reservationService.getReservation(this.reservationData._id)
@@ -34,6 +42,9 @@ export class UpdatereservationComponent implements OnInit {
   }
 
   updateReservation(){
+    if(new Date(this.reservationData.checkInDate).getDate()  >  new Date(this.reservationData.checkOutDate).getDate()){
+      this.response='Check-In should be lesser than Check-Out'
+    }else{
     this._reservationService.updateReservation(this.reservationData)
         .subscribe(
           res =>{
@@ -45,6 +56,7 @@ export class UpdatereservationComponent implements OnInit {
             console.log(err)
           }
         )
+    }
 
   }
 

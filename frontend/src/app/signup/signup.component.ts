@@ -11,6 +11,7 @@ export class SignupComponent implements OnInit {
 
   registerUserData:any = {}
 
+  role=["Owner", "Manager", "Receptionist"];
   constructor( private _auth : AuthserviceService, private router : Router ) { }
 
   ngOnInit(): void {

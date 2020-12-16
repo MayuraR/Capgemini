@@ -31,13 +31,14 @@ h2{
     padding: 1.5rem 2rem;
     color: #333333;
 }
-input{
+input, select{
     background: transparent;
     border-radius: 20px;
     border-width: 3px;
     border-color: rgb(34, 34, 151);
     width: 300px;
     margin: 10px auto;
+    height: 45px;
 }
 label{
     font-size: 1.2em;

@@ -1,5 +1,5 @@
 .text{
-    position: fixed;
+    position: absolute;
     top: 45%;
     left: 30%;
 }
@@ -26,6 +26,10 @@ p{
     background-color: whitesmoke;
     color: black;
     cursor: pointer;
+}
+app-footer-white{
+    position:fixed;
+    bottom: 0%;
 }
 .image{
     
@@ -56,3 +60,5 @@ p{
         background-image: url("../../assets/corridor.jpg");
     }
 }
+
+

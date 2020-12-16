@@ -1,9 +1,9 @@
 <div class="page-container">
 
 <nav class="navbar flex-column flex-md-row py-3 px-3">
-    <h3 class="py-3 px-3"> C'est la vie </h3>
+    <h1 class="py-3 px-3"> C'est la vie </h1>
     <ul class="justify-content-right">
-        <li ><a  >Book Now</a></li>
+        <li ><a  (click) ='book()'>Book Now</a></li>
         <li ><a  (click)= "signUp()">SignUp</a></li>
         <li *ngIf = '!_auth.loggedIn()'><a (click)='signIn()'>Sign in</a></li>
         <li *ngIf = '_auth.loggedIn()'><a  (click)= "_auth.logOut()">Logout</a></li>
@@ -11,7 +11,9 @@
       </ul>
 </nav>
 
-<video src="../../assets/video.mp4" controls ></video>
+<video  controls autoplay >
+    <source src="../../assets/video.mp4">
+</video>
 <br>
 
 <section class="pt-5 pb-5">
@@ -118,7 +120,9 @@
 <div class="container">
     <h2>Our culinary experience</h2>
     <br>
-    <video src="../../assets/video2.mp4" controls></video>
+    <video controls autoplay>
+        <source src="../../assets/video2.mp4">
+    </video>
 </div>
 <br>
 
