@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthserviceService } from '../auth/authservice.service';
 import { RoomReservationService } from '../services/room-reservation.service'
 import { Router } from '@angular/router';
+import { ICustomWindow, WindowRefService } from '../services/window-ref.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-customer-booking',
@@ -12,14 +14,84 @@ export class CustomerBookingComponent implements OnInit {
 
   reservationData:any={}
 
-  disableAvailable:boolean=false
+  disableAvailable:boolean=false;
 
-  constructor( public _auth : AuthserviceService, private router :Router, private _roomService : RoomReservationService ) { }
+  disableBooking:boolean=true;
+
+  rate:number;
+
+  response:string=''
+
+  private _window: ICustomWindow;
+
+  public rzp: any;
+
+  public options: any = {
+    key: 'rzp_test_WuIJOtLs8dE4rI', // add razorpay key here
+    name: '',
+    description: 'Reservation Fee',
+    // amount:this.rate,
+    prefill: {
+      name: 'Mayura',
+      email: 'hotelmanagement655@gmail.com', // add your email id
+    },
+    notes: {},
+    theme: {
+      color: '#3880FF'
+    },
+    handler: this.paymentHandler.bind(this),
+    modal: {
+      ondismiss: (() => {
+        this.zone.run(() => {
+          alert("Failed");
+        })
+      })
+    
+    
+    }
+  };
+  
+
+  constructor( public _auth : AuthserviceService, private router :Router, private _roomService : RoomReservationService, private zone: NgZone, private winRef: WindowRefService) { 
+    this._window = this.winRef.nativeWindow;
+  }
+  initPay(): void {
+
+    this._roomService.getRate(this.reservationData)
+      .subscribe(
+        res => {
+          this.rate=parseInt(res);
+          this.getTotal()
+        },
+        err =>{
+          console.log(err)
+        }
+      )
+    this.rzp = new this.winRef.nativeWindow['Razorpay'](this.options);
+    this.rzp.open();
+  }
+
+  paymentHandler(res: any) {
+    this.zone.run(() => {
+      this.addReservation();
+      this.goBack();
+    });
+  }
 
   ngOnInit(): void {
   }
 
-  
+  //set min and max date
+  now = new Date();
+  year = this.now.getFullYear();
+  month = this.now.getMonth();
+  day = this.now.getDate();
+  minDate1 = moment({year: this.year, month: this.month, day: this.day}).format('YYYY-MM-DD');
+  minDate2 = moment({year: this.year, month: this.month, day: this.day+1}).format('YYYY-MM-DD');
+
+  getTotal(){
+    this.rate * (new Date(this.reservationData.checkOutDate).getTime() -new Date(this.reservationData.checkInDate).getTime())/(24 * 60 * 60 * 1000);
+  }
 
   book(){
     this.router.navigate(['/customerBooking'])
@@ -38,6 +110,10 @@ export class CustomerBookingComponent implements OnInit {
     window.history.back()
   }
   checkAvailibility(){
+    if(new Date(this.reservationData.checkInDate).getTime() >= new Date(this.reservationData.checkOutDate).getTime()){
+      alert('Check-In should be lesser than Check-Out')
+    }
+    else{
     this._roomService.getavailable({"start" : this.reservationData.checkInDate, "end" : this.reservationData.checkOutDate})
       .subscribe(
         res => {
@@ -46,12 +122,43 @@ export class CustomerBookingComponent implements OnInit {
           }
           else{
             this.reservationData.roomNo = res[0];
-            this.disableAvailable=true
+            this.disableAvailable=true;
+            this.disableBooking=false;
+            this.getRate(this.reservationData)
           }
         },
         err =>{
           console.log(err)
         }
       )
+    }
   }
+
+  addReservation(){
+    this.disableBooking=true;
+    this._roomService.addReservation(this.reservationData)
+      .subscribe(
+        res =>{
+          alert('Reservation added check your email');
+          this.goBack();
+        },
+        err => {
+          this.response =err.message
+          alert(err.message)
+        }
+      )
+    }
+
+    getRate(object){
+      this._roomService.getRate(object)
+        .subscribe(
+          res => {
+              this.rate = parseFloat(res)
+          },
+          err => {
+              console.log(err)
+          }
+        )
+
+    }
 }

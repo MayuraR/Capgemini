@@ -74,10 +74,13 @@ export class InventoryComponent implements OnInit {
         this.getItem.item=this.addInventoryData.item;
         this.addInventoryData={}
         this.getInventory()
+        this.addInventoryData={};
 
       },
       err => {
-        console.log(err)
+        console.log(err);
+        alert(err.statusText)
+        window.history.back()
       }
     )
   }

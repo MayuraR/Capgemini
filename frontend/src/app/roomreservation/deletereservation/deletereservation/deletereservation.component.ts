@@ -24,7 +24,8 @@ export class DeletereservationComponent implements OnInit {
           this.response=res;
         },
         err =>{
-          this.response=err.message
+          this.response=err;
+          console.log(err)
         }
       )
   }

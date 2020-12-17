@@ -30,7 +30,7 @@ export class UpdatememberComponent implements OnInit {
           }
           
         },
-        err => {alert(err.message)}
+        err => {this.response = (err.message)}
       )
   }
 

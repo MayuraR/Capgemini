@@ -100,15 +100,15 @@
       <div class="modal-body">
         <form class="form">
           <div class="form-group ">
-            <label for="uname1">Enter item:</label>
-            <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="getItem.item" name="item" placeholder="Enter item to be found" required>
-            <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+            <label for="item_">Enter item:</label>
+            <input type="text" #item_=ngModel class="form-control col-xs-4" [(ngModel)]="getItem.item" name="item_" placeholder="Enter item to be found" required>
+            <small [class.d-none] = "item_.untouched || item_.valid" class="text-danger">Item is required</small>
           </div>          
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='getInventory()'>Search</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='getInventory()' [disabled]='item_.invalid'>Search</button>
       </div>
     </div>
   </div>
@@ -127,30 +127,30 @@
         <div class="modal-body">
           <form class="form">
             <div class="form-group ">
-              <label for="date">Enter date:</label>
-              <input type="date" #date=ngModel class="form-control col-xs-4" [ngModel]="updateInventoryData.date | date:'yyyy-MM-dd'" (ngModelChange)="updateInventoryData.date = $event" name="date" required>
-              <small [class.d-none] = "date.untouched || date.valid" class="text-danger">Date required</small>
+              <label for="_date">Enter date:</label>
+              <input type="date" #_date=ngModel class="form-control col-xs-4" [ngModel]="updateInventoryData.date | date:'yyyy-MM-dd'" (ngModelChange)="updateInventoryData.date = $event" name="_date" required>
+              <small [class.d-none] = "_date.untouched || _date.valid" class="text-danger">Date required</small>
             </div>
             <div class="form-group ">
-              <label for="area">Enter area:</label>
-              <input type="text" #area=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.area" name="area" placeholder="Area" required>
-              <small [class.d-none] = "area.untouched || area.valid" class="text-danger">Area is required</small>
+              <label for="_area">Enter area:</label>
+              <input type="text" #_area=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.area" name="_area" placeholder="Area" required>
+              <small [class.d-none] = "_area.untouched || _area.valid" class="text-danger">Area is required</small>
             </div>
             <div class="form-group ">
-              <label for="item">Enter item:</label>
-              <input type="text" #item=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.item" name="item" placeholder="Item" required>
-              <small [class.d-none] = "item.untouched || item.valid" class="text-danger">Item is required</small>
+              <label for="_item">Enter item:</label>
+              <input type="text" #_item=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.item" name="_item" placeholder="Item" required>
+              <small [class.d-none] = "_item.untouched || _item.valid" class="text-danger">Item is required</small>
             </div>
             <div class="form-group ">
-              <label for="quantity">Enter quantity:</label>
-              <input type="text" #quantity=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.quantity" name="quantity" placeholder="quantity" required>
-              <small [class.d-none] = "quantity.untouched || quantity.valid" class="text-danger">Quantity is required</small>
+              <label for="_quantity">Enter quantity:</label>
+              <input type="text" #_quantity=ngModel class="form-control col-xs-4" [(ngModel)]="updateInventoryData.quantity" name="_quantity" placeholder="quantity" required>
+              <small [class.d-none] = "_quantity.untouched || _quantity.valid" class="text-danger">Quantity is required</small>
             </div>          
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)='updateInventory()' data-dismiss="modal" >Update</button>
+          <button type="button" class="btn btn-primary" (click)='updateInventory()' data-dismiss="modal" [disabled]='_quantity.invalid || _item.invalid ||_area.invalid|| _date.invalid'>Update</button>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class RoomReservationService {
   constructor(private http : HttpClient) { }
 
   addReservation(reservation){
-    return this.http.post(`${this._url}/room`, reservation)
+    return this.http.post(`${this._url}/room`, reservation , { responseType: "text" })
   }
   updateReservation(reservation){
     return this.http.patch(`${this._url}/room/${reservation._id}`,reservation, { responseType: "text" })
@@ -27,5 +28,8 @@ export class RoomReservationService {
   }
   setRate(data){
     return this.http.patch(`${this._url}/setRate/${data.roomNo}`, { "rate" : data.rate}, { responseType: "text" })
+  }
+  getRate(data){
+    return this.http.get(`${this._url}/getRate/${data.roomNo}`, { responseType: "text" }) 
   }
 }

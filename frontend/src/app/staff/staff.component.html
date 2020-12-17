@@ -133,15 +133,15 @@
         <div class="modal-body">
           <form class="form">
             <div class="form-group ">
-              <label for="department">Enter department:</label>
-              <input type="text" #department=ngModel class="form-control col-xs-4" [(ngModel)]="getData.department" name="department" placeholder="Enter department" required>
-              <small [class.d-none] = "department.untouched || department.valid" class="text-danger">Department is required</small>
+              <label for="department_">Enter department:</label>
+              <input type="text" #department_=ngModel class="form-control col-xs-4" [(ngModel)]="getData.department" name="department_" placeholder="Enter department" required>
+              <small [class.d-none] = "department_.untouched || department_.valid" class="text-danger">Department is required</small>
             </div>          
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='getMember()'>Search</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='getMember()' [disabled]='department_.invalid'>Search</button>
         </div>
       </div>
     </div>

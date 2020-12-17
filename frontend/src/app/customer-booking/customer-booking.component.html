@@ -22,14 +22,14 @@
                 <div class="card-body">
                     <form class="form">
                       <div class="form-group ">
-                        <label for="checkInDate">checkInDate</label>
-                        <input type="date" #checkInDate=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.checkInDate" name="checkInDate"   required>
+                        <label for="checkInDate">Check In Date</label>
+                        <input type="date" #checkInDate=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.checkInDate" name="checkInDate" [min]="minDate1"  required>
                         <small [class.d-none] = "(checkInDate.untouched || checkInDate.valid)" class="text-danger">checkInDate is required</small>
                       </div>
                       
                       <div class="form-group">
-                        <label>checkOutDate</label>
-                        <input type="date" #checkOutDate=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.checkOutDate" name="checkOutDate"   required>
+                        <label>Check Out Date</label>
+                        <input type="date" #checkOutDate=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.checkOutDate" name="checkOutDate" [min]="minDate2"  required>
                         <small [class.d-none] = "checkOutDate.untouched || checkOutDate.valid" class="text-danger">checkOutDate is required</small>
                       </div>
                       <br>
@@ -48,7 +48,7 @@
 </div>
 
 
-<div class="wrapper" [class.d-none]="!disableAvailable" >
+<div class="wrapper" [class.d-none]="disableBooking" >
     <h2>Reservation Details</h2>
 
 <div class="container py-3">
@@ -58,19 +58,19 @@
                 <form class="form">
                     <div class="form-group ">
                         <label for="membershipId">Membership Id</label>
-                        <input type="text" #membershipId=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.membershipId" name="membershipId"  required>
-                        <small>Not a member? <a routerLink="/members/addMember">Become a member Now!</a></small>
-                        <small [class.d-none] = "(membershipId.untouched || membershipId.valid)" class="text-danger">Membership Id is required</small>
+                        <input type="text" pattern="^[0-9a-fA-f]{24}$" #membershipId=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.membershipId" name="membershipId"  required>
+                        <small>Not a member? <a routerLink="/members/addMember">Click here!</a></small><br>
+                        <small [class.d-none] = "(membershipId.untouched || membershipId.valid)" class="text-danger">Vaild membership Id is required</small>
                     </div>
                   <div class="form-group ">
-                    <label for="noOfChildren">noOfChildren</label>
-                    <input type="number" #noOfChildren=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.noOfChildren" name="noOfChildren" max=2 required>
+                    <label for="noOfChildren">No Of Children</label>
+                    <input type="number" #noOfChildren=ngModel class="form-control col-xs-4" [(ngModel)]="reservationData.noOfChildren" name="noOfChildren" required>
                     <small [class.d-none] = "(noOfChildren.untouched || noOfChildren.valid)" class="text-danger">No. of Children is required and should be max 2</small>
                   </div>
                   
                   <div class="form-group">
-                    <label>noOfAdults</label>
-                    <input type="number" #noOfAdults=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.noOfAdults" name="noOfAdults" max = 3 required>
+                    <label>No Of Adults</label>
+                    <input type="number" #noOfAdults=ngModel class="form-control col-xs-4"  [(ngModel)]="reservationData.noOfAdults" name="noOfAdults" required>
                     <small [class.d-none] = "noOfAdults.untouched || noOfAdults.valid" class="text-danger">No. of adults is required</small>
                   </div>
                   <div class="form-group">
@@ -84,7 +84,7 @@
                   </div>
                   <br>
                   <div>
-                    <button type="button" class="btn btn1" (click)="checkAvailibility()" [disabled]='noOfAdults.invalid  || noOfChildren.invalid'>Next</button>
+                    <button type="button" class="btn btn1" (click)="initPay()" [disabled]='noOfAdults.invalid  || noOfChildren.invalid || membershipId.invalid || verificationDoc.invalid'>Next</button>
                   </div>
                   
                 </form>

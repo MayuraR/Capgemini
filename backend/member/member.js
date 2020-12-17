@@ -25,21 +25,21 @@ const Member = require('../Models/Member')
 //methods: ADD, GET, UPDATE
 
 //Get all members
-app.get('/members', requireAuth, (req, res) =>{
+app.get('/members', requireAuth, authRole(['Manager','Owner','Receptionist']), (req, res) =>{
     Member.find({})
         .then((member) => res.send(member))
         .catch((err) => console.log(err))
 })
 
 //Get member by id
-app.get('/members/:id',(req, res) =>{
+app.get('/members/:id', authRole(['Manager','Owner','Receptionist']),(req, res) =>{
     Member.find({ _id : req.params.id})
         .then((member) => res.send(member))
-        .catch((err) => console.log(err))
+        .catch((err) => res.json(err))
 })
 
 //add a member(POST)
-app.post('/members', (req, res) =>{
+app.post('/members',  (req, res) =>{
     (new Member ( { 'name' : req.body.name, 'gender' : req.body.gender, 'contact' : req.body.contact, 'email' : req.body.email}))
         .save()
         .then((member) => {
@@ -53,7 +53,7 @@ app.post('/members', (req, res) =>{
 })
 
 //update (PATCH)
-app.patch('/members/:id',requireAuth, (req, res) =>{
+app.patch('/members/:id',requireAuth, authRole(['Manager','Owner','Receptionist']),(req, res) =>{
     Member.findOneAndUpdate({ _id : req.params.id}, { $set : req.body })
         .then((member) => {
             console.log('member updated');

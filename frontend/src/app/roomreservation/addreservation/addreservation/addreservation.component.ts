@@ -27,20 +27,24 @@ export class AddreservationComponent implements OnInit {
     
 
   addReservation(){
-    if(new Date(this.addReservationData.checkInDate).getDate()  >  new Date(this.addReservationData.checkOutDate).getDate()){
+    if(new Date(this.addReservationData.checkInDate).getTime()  >  new Date(this.addReservationData.checkOutDate).getTime()){
       this.response='Check-In should be lesser than Check-Out'
     }
     else{
     this._roomService.addReservation(this.addReservationData)
       .subscribe(
         res =>{
-          console.log(this.minDate1)
-          this.response = 'reservation added check email';
-          console.log(res)
+          if(res.includes('Cast to ObjectId failed for value')){
+            this.response = "Id not found. Enter id again"
+          }
+          else{
+          this.response = res;
+          }
+          
         },
         err => {
           this.response =err.message
-          console.log(err.message)
+          console.log(err)
         }
       )
     }

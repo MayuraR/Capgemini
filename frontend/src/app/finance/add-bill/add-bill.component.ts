@@ -39,7 +39,7 @@ export class AddBillComponent implements OnInit {
           this.generateBill(res)
         },
         err =>{
-          this.response=err
+          this.response=err.message
           console.log(err.message)
         }
       )

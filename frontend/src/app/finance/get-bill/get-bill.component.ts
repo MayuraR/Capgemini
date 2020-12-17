@@ -33,9 +33,11 @@ export class GetBillComponent implements OnInit {
     this._finance.getBill(this.getBillData.item)
       .subscribe(
           async res =>{
+            console.log(res)
           const array:any = []
           await array.push(res)
-          if(array.length === 0){this.response = `No bill available`}
+          console.log(array)
+          if(array[0].length === 0){this.response = `No bill available`}
           else{this.response=`Check bill in downloads`
           for  (const bill of array[0] ){
               this.generateBill(bill);
@@ -45,8 +47,14 @@ export class GetBillComponent implements OnInit {
  
         },
         err=> {
-          this.response=`Error please enter ID again`
-          console.log(err.message)
+          console.log(err)
+          if(err.status === 401){
+            this.response='Unauthorized Access'
+          }
+          else{
+            this.response=`Error please enter ID again`
+            console.log(err.message)
+          }
         }
       )
 

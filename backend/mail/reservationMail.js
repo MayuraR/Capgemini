@@ -26,7 +26,7 @@ async function reservationMail(res, member ,callback) {
       <p>Check-Out Date : ${res.checkOutDate.getDate()}/${res.checkOutDate.getMonth()+1}/${res.checkOutDate.getFullYear()}</p>
       <p>Room Number : ${res.roomNo}</p>
       <br>
-      <p>Please note Check-In takes place 10:00 pm onwards</p>
+      <p>Please note Check-In takes place 10:00 pm onwards. Carry your verification documents along with you.</p>
       <p>Have a great day!</p>
       
       <p>Regards</p>

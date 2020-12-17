@@ -23,15 +23,18 @@ const Bill = require('../Models/Bill')
 //methods: ADD, GET
 
 //Get bill by customer id
-app.get('/bill/:memberId', requireAuth, (req, res) =>{
+app.get('/bill/:memberId', requireAuth, authRole(['Manager','Owner','Receptionist']),(req, res) =>{
     Bill.find({ memberId : req.params.memberId})
         .then((bills) => res.send(bills))
-        .catch((err) => console.log(err))
+        .catch((err) => {
+            console.log(err.message)
+            res.json(err)
+        })
 })
 
 //get total income
 //http://localhost:3800/income?start=2018-01-01&&end=2018-12-31
-app.get('/income',requireAuth, (req, res) =>{
+app.get('/income',requireAuth, authRole(['Manager','Owner']),(req, res) =>{
     const matchStart = Date.parse(req.query.start)
     const matchEnd = Date.parse(req.query.end)
     Bill.find({ date : {"$gt": new Date( matchStart ) ,"$lt": new Date( matchEnd ) }})
@@ -43,11 +46,11 @@ app.get('/income',requireAuth, (req, res) =>{
             res.send(`The total is ${sum}`)
         }
         )
-        .catch((err) => console.log(err))
+        .catch((err) => res.send(err.message))
 })
 
 //add a bill(POST)
-app.post('/bill',requireAuth, (req, res) =>{
+app.post('/bill',requireAuth,authRole(['Manager','Owner','Receptionist']), (req, res) =>{
     (new Bill ( { 'memberId' : req.body.memberId, 
                     'date' : req.body.date, 
                     'amount' : req.body.amount, 
@@ -56,7 +59,7 @@ app.post('/bill',requireAuth, (req, res) =>{
                 }))
         .save()
         .then((bill) => res.send(bill))
-        .catch((err) => console.log(err))
+        .catch((err) => res.json(err))
 })
 
 

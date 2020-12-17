@@ -3,7 +3,7 @@
     <app-navbar></app-navbar>
     <div class="details">
         <div class="row">
-          <div class="col-md-auto mx-auto">
+          <div class="col-md-auto px-5">
             <span class="anchor" id="formInventory"></span>
     
             <!-- form card get -->
@@ -15,8 +15,8 @@
                 <form class="form">
                   <div class="form-group ">
                     <label for="id">Enter customer ID:</label>
-                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="billData.memberId" name="id" placeholder="Enter customer ID" required>
-                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
+                    <input type="text" pattern="^[0-9a-fA-f]{24}$" #id=ngModel class="form-control col-xs-4" [(ngModel)]="billData.memberId" name="id" placeholder="Enter customer ID" required>
+                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">Valid ID is required</small>
                   </div>
   
                   <div class="form-group ">
@@ -27,13 +27,13 @@
   
                   <div class="form-group ">
                     <label for="amount">Enter amount:</label>
-                    <input type="number" #amount=ngModel class="form-control col-xs-4" [(ngModel)]="billData.amount" name="id" placeholder="Enter amount" required>
+                    <input type="number" #amount=ngModel class="form-control col-xs-4" [(ngModel)]="billData.amount" name="amount" placeholder="Enter amount" required>
                     <small [class.d-none] = "amount.untouched || amount.valid" class="text-danger">amount is required</small>
                   </div>
   
                   <div class="form-group ">
                     <label for="gst">Enter gst:</label>
-                    <input type="number" #gst=ngModel class="form-control col-xs-4" [(ngModel)]="billData.gst" name="id" placeholder="Enter gst" required>
+                    <input type="number" #gst=ngModel class="form-control col-xs-4" [(ngModel)]="billData.gst" name="gst" placeholder="Enter gst" required>
                     <small [class.d-none] = "gst.untouched || gst.valid" class="text-danger">GST is required</small>
                   </div>
   
@@ -45,7 +45,7 @@
   
                   <br>
                   <div class="wrapper">
-                    <button type="button" class="btn" (click) = "addBill()" data-toggle="modal" data-target="#Modal2" [disabled] = "date.invalid || amount.invalid || gst.invalid || gt.invalid">Add</button>
+                    <button type="button" class="btn" (click) = "addBill()" data-toggle="modal" data-target="#Modal2" [disabled] = "date.invalid || amount.invalid || gst.invalid || gt.invalid || id.invalid">Add</button>
                     <button type="button" class="btn ml-5" (click) = "back() ">Back</button>
                   </div>
                   

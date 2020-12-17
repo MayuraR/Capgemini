@@ -68,7 +68,7 @@ export class StaffComponent implements OnInit {
             this._staffService.getAllStaff()
             .subscribe(
               res =>{
-                this.staff = res
+                this.staff = res;
               },
               err =>{
                 console.log(err)

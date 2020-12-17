@@ -14,8 +14,8 @@
                 <form class="form">
                   <div class="form-group ">
                     <label for="id">Enter customer ID:</label>
-                    <input type="text" #id=ngModel class="form-control col-xs-4" [(ngModel)]="getBillData.item" name="id" placeholder="Enter customer ID" required>
-                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">ID is required</small>
+                    <input type="text"  pattern="^[0-9a-fA-f]{24}$" #id=ngModel class="form-control col-xs-4" [(ngModel)]="getBillData.item" name="id" placeholder="Enter customer ID" required>
+                    <small [class.d-none] = "id.untouched || id.valid" class="text-danger">Valid ID is required</small>
                   </div>
                   <br>
                   <div class="wrapper">

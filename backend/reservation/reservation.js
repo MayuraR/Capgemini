@@ -1,6 +1,5 @@
 var express = require('express');
 var mongoose = require('mongoose');
-var cookieParser = require('cookie-parser');
 var cors = require('cors');
 var axios = require('axios');
 var { requireAuth } = require('../middleware/authentication');
@@ -10,7 +9,6 @@ var { reservationMail } = require('../mail/reservationMail');
 app = express();
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser());
 
 
 mongoose.Promise = global.Promise;
@@ -46,7 +44,7 @@ app.get('/room/:id', requireAuth, authRole([]), (req, res) =>{
 
 //find room available
 //http://localhost:3500/available?start=2020-12-09&&end=2020-12-11
-app.get('/available',requireAuth, (req, res) =>{
+app.get('/available',   (req, res) =>{
     const matchStart = new Date(req.query.start)
     const matchEnd = new Date(req.query.end)
     available = [] 
@@ -101,11 +99,11 @@ app.post('/room', (req, res) =>{
                         //console.log(info);
                       }) 
                 })
-                .catch(err => console.log(err))
+                .catch(err => res.send(err.message))
             //console.log("Within reservation")
-            res.send(reservation)
+            res.send("Reservation added! Check mails")
         })
-        .catch((err) => console.log(err))
+        .catch((err) => res.send(err.message))
 
         //add to the room database
         room.findOneAndUpdate( {"roomNo" : req.body.roomNo}, {
@@ -152,7 +150,7 @@ app.delete('/room/:id', requireAuth,   (req,res) =>{
     
     roomReservation.findByIdAndDelete( {_id : req.params.id} )
         .then((reservation) => {     
-            res.send("deleted")
+            res.send("Deleted successfully")
 
 //for the room database
             room.findOne({"roomNo" : reservation.roomNo})
@@ -168,12 +166,22 @@ app.delete('/room/:id', requireAuth,   (req,res) =>{
 
                     room.findOneAndUpdate( {"roomNo" : reservation.roomNo} , {"reserved" : array })
                         .then(console.log("Done Update"))
-                        .catch(err => console.log(err))
+                        .catch(err => {
+                            //res.send(err)
+                            console.log(err.message)
+                        })
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                   // res.send(err)
+                    console.log(err.message)
+                })
 
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err.message)
+            res.send(err)
+            
+        })
 
 
     
@@ -201,7 +209,7 @@ app.patch('/setRate/:roomNo', (req, res) =>{
 
 app.get('/getRate/:roomNo', (req, res) =>{
     room.findOne({"roomNo" : req.params.roomNo})
-        .then( (rooms) => res.send(rooms) )
+        .then( (rooms) => res.send(`${rooms.rate}`) )
         .catch( (err) => res.send(err))
 })
 

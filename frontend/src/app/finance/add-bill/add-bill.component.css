@@ -33,7 +33,7 @@ label{
 }
 .addBill .card{
     position: absolute;
-    left: 10%;
+    left: 100%;
     background-color: transparent;
     border-color: transparent;
     align-items: center;
