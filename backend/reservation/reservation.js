@@ -150,7 +150,7 @@ app.delete('/room/:id', requireAuth,   (req,res) =>{
     
     roomReservation.findByIdAndDelete( {_id : req.params.id} )
         .then((reservation) => {     
-            res.send("Deleted successfully")
+            
 
 //for the room database
             room.findOne({"roomNo" : reservation.roomNo})
@@ -175,6 +175,7 @@ app.delete('/room/:id', requireAuth,   (req,res) =>{
                    // res.send(err)
                     console.log(err.message)
                 })
+                res.send("Deleted successfully")
 
         })
         .catch(err => {
@@ -214,6 +215,8 @@ app.get('/getRate/:roomNo', (req, res) =>{
 })
 
 
-app.listen(3500, () => {
+const server = app.listen(3500, () => {
     console.log('Listening to port 3500')
 })
+
+module.exports = server

@@ -8,7 +8,7 @@
 }
 .getIncome .card{
     position: absolute;
-    left: 10%;
+    right: 100%;
     background-color: transparent;
     border-color: transparent;
     align-items: center;    
@@ -33,7 +33,7 @@ label{
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    margin: 10px auto;
+    margin: 10px 0px;
 }
 .btn:hover{
     color: whitesmoke;

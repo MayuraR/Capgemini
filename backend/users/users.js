@@ -47,6 +47,7 @@ app.post('/login', async (req, res) =>{
         res.status(200).json({token});
       } 
       catch (err) {
+        console.log(err)
         res.status(401).json(err.message)
       }
 })
@@ -60,11 +61,9 @@ app.post('/signup', (req, res) =>{
 
 })
 
-app.get('/logout', (req,res) => {
-  res.cookie("jwt", "", {maxAge : 1})
-  res.redirect('/login')
-})
 
-app.listen(4000, () => {
+const server = app.listen(4000, () => {
     console.log('Listening to port 4000')
 })
+
+module.exports = server

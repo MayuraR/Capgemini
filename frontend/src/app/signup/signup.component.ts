@@ -15,6 +15,11 @@ export class SignupComponent implements OnInit {
   constructor( private _auth : AuthserviceService, private router : Router ) { }
 
   ngOnInit(): void {
+    let decoded:any =this._auth.getRole(this._auth.getToken())
+    if (decoded.subject === "customer" || decoded.subject === "Receptionist"){
+      alert("Unauthorized")
+      window.history.back()
+    }
   }
 
   registerUser(){

@@ -81,7 +81,7 @@
               <p>Gender:</p>
                   <input type="radio" id="male" name="gender" value="Male" [(ngModel)]="addData.gender">
                   <label for="male">Male</label><br>
-                  <input type="radio" id="female" name="gender" value="Female"  [(ngModel)]="addData.gender" checked='checked'>
+                  <input type="radio" id="female" name="gender" value="Female"  [(ngModel)]="addData.gender">
                   <label for="female">Female</label><br>
                   <input type="radio" id="other" name="gender" value="Other" [(ngModel)]="addData.gender">
                   <label for="other">Other</label>
@@ -114,7 +114,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)='addStaff()' data-dismiss="modal" [disabled]='name.invalid || department.invalid '>Add</button>
+          <button type="button" class="btn btn-primary" (click)='addStaff()' data-dismiss="modal" [disabled]='name.invalid || department.invalid || salary.invalid || contact.invalid || email.invalid || doc.invalid'>Add</button>
         </div>
       </div>
     </div>
@@ -160,14 +160,14 @@
           <div class="modal-body">
             <form class="form">
                 <div class="form-group ">
-                    <label for="name">Enter name:</label>
-                    <input type="text" #name=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.name" name="name" placeholder="Enter Name" required>
-                    <small [class.d-none] = "name.untouched || name.valid" class="text-danger">Name is required</small>
+                    <label for="name_">Enter name:</label>
+                    <input type="text" #name_=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.name" name="name_" placeholder="Enter Name" required>
+                    <small [class.d-none] = "name_.untouched || name_.valid" class="text-danger">Name is required</small>
                   </div>
                   <div class="form-group ">
-                      <label for="department">Department:</label>
-                      <input type="text" #department=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.department" name="department" placeholder="Enter Department" required>
-                      <small [class.d-none] = "department.untouched || department.valid" class="text-danger">Department is required</small>
+                      <label for="department_">Department:</label>
+                      <input type="text" #department_=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.department" name="department_" placeholder="Enter Department" required>
+                      <small [class.d-none] = "department_.untouched || department_.valid" class="text-danger">Department is required</small>
                   </div>
                   <div class="form-group">
                     <p>Gender:</p>
@@ -180,27 +180,27 @@
                 </div>
       
                   <div class="form-group ">
-                      <label for="contact">Contact:</label>
-                      <input type="tel" pattern="[0-9]{10}" #contact=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.contact" name="contact" placeholder="Enter contact" required>
-                      <small [class.d-none] = "contact.untouched || contact.valid" class="text-danger">Contact is required</small>
+                      <label for="contact_">Contact:</label>
+                      <input type="tel" pattern="[0-9]{10}" #contact_=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.contact" name="contact_" placeholder="Enter contact" required>
+                      <small [class.d-none] = "contact_.untouched || contact_.valid" class="text-danger">Contact is required</small>
                   </div>
                   
                   <div class="form-group ">
-                      <label for="email">Email:</label>
-                      <input type="email" #email=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.email" name="email" placeholder="Enter Email" required>
-                      <small [class.d-none] = "email.untouched || email.valid" class="text-danger">Email is required</small>
+                      <label for="email_">Email:</label>
+                      <input type="email" #email_=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.email" name="email_" placeholder="Enter Email" required>
+                      <small [class.d-none] = "email_.untouched || email_.valid" class="text-danger">Email is required</small>
                   </div>
       
                   <div class="form-group ">
-                      <label for="department">Verification Documents Submitted:</label>
-                      <input type="text" #doc=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.verificationDoc" name="doc" placeholder="Enter Documents" required>
-                      <small [class.d-none] = "doc.untouched || doc.valid" class="text-danger">Documents are required</small>
+                      <label for="doc_">Verification Documents Submitted:</label>
+                      <input type="text" #doc_=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.verificationDoc" name="doc_" placeholder="Enter Documents" required>
+                      <small [class.d-none] = "doc_.untouched || doc_.valid" class="text-danger">Documents are required</small>
                   </div>
       
                 <div class="form-group ">
-                  <label for="salary">Salary:</label>
-                  <input type="number" #salary=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.salary" name="salary" placeholder="Enter Annual Salary" required>
-                  <small [class.d-none] = "salary.untouched || salary.valid" class="text-danger">salary is required</small>
+                  <label for="salary_">Salary:</label>
+                  <input type="number" #salary_=ngModel class="form-control col-xs-4" [(ngModel)]="updateData.salary" name="salary_" placeholder="Enter Annual Salary" required>
+                  <small [class.d-none] = "salary_.untouched || salary_.valid" class="text-danger">salary is required</small>
               </div>
                  
             </form>

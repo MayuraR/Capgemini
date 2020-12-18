@@ -10,7 +10,6 @@ import jwtDecode, { JwtPayload } from 'jwt-decode'
 export class AuthserviceService{
 
   private _loginUrl = "http://localhost:4000/login";
-  private _logOutUrl = "http://localhost:4000/logout";
   private _signUpUrl = "http://localhost:4000/signup";
   
   constructor( private http : HttpClient, private router : Router) { }
@@ -30,8 +29,7 @@ export class AuthserviceService{
 
   logOut(){
     localStorage.removeItem('token')
-    this.router.navigate(['/login']);
-    this.http.get(this._logOutUrl);
+    this.router.navigate(['/login'])
     
   }
 

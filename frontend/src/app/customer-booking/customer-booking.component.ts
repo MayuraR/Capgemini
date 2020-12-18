@@ -18,39 +18,15 @@ export class CustomerBookingComponent implements OnInit {
 
   disableBooking:boolean=true;
 
-  rate:number;
+  rate:number = 100;
+
+
 
   response:string=''
 
   private _window: ICustomWindow;
 
-  public rzp: any;
-
-  public options: any = {
-    key: 'rzp_test_WuIJOtLs8dE4rI', // add razorpay key here
-    name: '',
-    description: 'Reservation Fee',
-    // amount:this.rate,
-    prefill: {
-      name: 'Mayura',
-      email: 'hotelmanagement655@gmail.com', // add your email id
-    },
-    notes: {},
-    theme: {
-      color: '#3880FF'
-    },
-    handler: this.paymentHandler.bind(this),
-    modal: {
-      ondismiss: (() => {
-        this.zone.run(() => {
-          alert("Failed");
-        })
-      })
-    
-    
-    }
-  };
-  
+  public rzp: any;  
 
   constructor( public _auth : AuthserviceService, private router :Router, private _roomService : RoomReservationService, private zone: NgZone, private winRef: WindowRefService) { 
     this._window = this.winRef.nativeWindow;
@@ -61,13 +37,45 @@ export class CustomerBookingComponent implements OnInit {
       .subscribe(
         res => {
           this.rate=parseInt(res);
-          this.getTotal()
+          this.getTotal();
+          this.payWithRazor();
         },
         err =>{
           console.log(err)
         }
       )
-    this.rzp = new this.winRef.nativeWindow['Razorpay'](this.options);
+
+    
+  }
+
+  payWithRazor(){
+    let options: any = {
+      key: 'rzp_test_WuIJOtLs8dE4rI', // add razorpay key here
+      name: 'Reservation',
+      description: 'Reservation Fee',
+      amount:this.rate,
+      prefill: {
+        name: 'Mayura',
+        email: 'hotelmanagement655@gmail.com', // add your email id
+      },
+      notes: {},
+      theme: {
+        color: '#3880FF'
+      },
+      handler: this.paymentHandler.bind(this),
+      modal: {
+        ondismiss: (() => {
+          this.zone.run(() => {
+            alert("Failed");
+            window.location.reload();
+          })
+        })
+      
+      
+      }
+    };
+
+    this.rzp = new this.winRef.nativeWindow['Razorpay'](options);
     this.rzp.open();
   }
 
@@ -90,7 +98,7 @@ export class CustomerBookingComponent implements OnInit {
   minDate2 = moment({year: this.year, month: this.month, day: this.day+1}).format('YYYY-MM-DD');
 
   getTotal(){
-    this.rate * (new Date(this.reservationData.checkOutDate).getTime() -new Date(this.reservationData.checkInDate).getTime())/(24 * 60 * 60 * 1000);
+   this.rate= this.rate * 100 * (new Date(this.reservationData.checkOutDate).getTime() -new Date(this.reservationData.checkInDate).getTime())/(24 * 60 * 60 * 1000);
   }
 
   book(){

@@ -32,7 +32,7 @@ app.get('/members', requireAuth, authRole(['Manager','Owner','Receptionist']), (
 })
 
 //Get member by id
-app.get('/members/:id', authRole(['Manager','Owner','Receptionist']),(req, res) =>{
+app.get('/members/:id', authRole([]),(req, res) =>{
     Member.find({ _id : req.params.id})
         .then((member) => res.send(member))
         .catch((err) => res.json(err))
@@ -64,6 +64,8 @@ app.patch('/members/:id',requireAuth, authRole(['Manager','Owner','Receptionist'
     
 })
 
-app.listen(3000, () => {
+const server = app.listen(3000, () => {
     console.log('Listening to port 3000')
 })
+
+module.exports = server

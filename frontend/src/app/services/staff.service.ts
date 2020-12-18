@@ -12,7 +12,7 @@ export class StaffService {
   constructor( private http : HttpClient ) { }
   
   getAllStaff(){
-    return this.http.get(`${this._url}/allStaff`)
+    return this.http.get<any>(`${this._url}/allStaff`)
   }
   
   getStaffById(object){
@@ -21,7 +21,7 @@ export class StaffService {
   }
 
   getStaffByDepartment(object){
-    return this.http.get(`${this._url}/staff?department=${object.department}`)
+    return this.http.get<any>(`${this._url}/staff?department=${object.department}`)
       
   }
 

@@ -1,5 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
+const swaggerJSDoc=require('swagger-jsdoc');
+const swaggerUI=require('swagger-ui-express');
 var cookieParser = require('cookie-parser')
 var { requireAuth } = require('../middleware/authentication')
 var cors = require('cors')
@@ -11,6 +13,23 @@ app.use(cors())
 
 mongoose.Promise = global.Promise;
 
+//Swagger
+const swaggerOptions={
+    definition:{
+        openapi:'3.0.0',
+        info:{
+            title:'Finance Management API',
+            description:'Api for finance management',
+            servers:["http://localhost:3800"]
+        }
+    },
+    apis:["bills.js"]
+}
+
+const swaggerDocs=swaggerJSDoc(swaggerOptions);
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
+
+
 // connect to the database
 mongoose.connect('mongodb+srv://test:test@cluster0.tfqi1.mongodb.net/bills',{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
     .then(console.log('Connected to database "bills"'))
@@ -18,9 +37,54 @@ mongoose.connect('mongodb+srv://test:test@cluster0.tfqi1.mongodb.net/bills',{ us
 
 app.use(express.json())
 
-const Bill = require('../Models/Bill')
+/**
+ * @swagger
+ * definitions:
+ *  Bill:
+ *   type: object
+ *   properties:
+ *    memberId:
+ *     type: string
+ *    date:
+ *     type: string
+ *    amount:
+ *     type: integer
+ *    gst:
+ *     type: integer
+ *    grandTotal:
+ *     type: integer
+ */
+
+const Bill = require('../Models/Bill');
 
 //methods: ADD, GET
+
+//swagger for get
+ /**
+  * @swagger
+  * /bill/{memberId}:
+  *  get:
+  *   summary: get member by id
+ *   description: create team
+ *   parameters:
+ *    - in: path
+ *      name: memberId
+ *      schema:
+ *       type: string
+ *      required: true
+ *   responses:
+ *    200:
+ *     description: success
+ *    500:
+ *     description: error
+ *   securitySchemes:
+ *    bearerAuth:            # arbitrary name for the security scheme
+ *     type: http
+ *     scheme: bearer
+ *     bearerFormat: JWT 
+ * security:
+  - bearerAuth: []   
+ */
 
 //Get bill by customer id
 app.get('/bill/:memberId', requireAuth, authRole(['Manager','Owner','Receptionist']),(req, res) =>{
@@ -50,7 +114,7 @@ app.get('/income',requireAuth, authRole(['Manager','Owner']),(req, res) =>{
 })
 
 //add a bill(POST)
-app.post('/bill',requireAuth,authRole(['Manager','Owner','Receptionist']), (req, res) =>{
+app.post('/bill',requireAuth, authRole(['Manager','Owner','Receptionist']), (req, res) =>{
     (new Bill ( { 'memberId' : req.body.memberId, 
                     'date' : req.body.date, 
                     'amount' : req.body.amount, 
@@ -64,6 +128,8 @@ app.post('/bill',requireAuth,authRole(['Manager','Owner','Receptionist']), (req,
 
 
 
-app.listen(3800, () => {
+const server1 = app.listen(3800, () => {
     console.log('Listening to port 3800')
 })
+
+module.exports = server1

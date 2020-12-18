@@ -57,6 +57,8 @@ app.delete('/inventory/:id',requireAuth, authRole(['Manager','Owner']), (req, re
         .catch((err) => console.log(err))
 })
 
-app.listen(3600, () => {
+const server = app.listen(3600, () => {
     console.log('Listening to port 3600')
 })
+
+module.exports = server

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventoryService} from '../services/inventory.service'
+import { InventoryService} from '../services/inventory.service';
+import { AuthserviceService } from '../auth/authservice.service'
 
 @Component({
   selector: 'app-inventory',
@@ -14,9 +15,16 @@ export class InventoryComponent implements OnInit {
   updateInventoryData:any={};
   getItem:any={}
 
-  constructor(private _inventory : InventoryService) { }
+  constructor(private _inventory : InventoryService, private _auth : AuthserviceService) { }
 
   ngOnInit(): void {
+
+    let decoded:any =this._auth.getRole(this._auth.getToken())
+    if (decoded.subject === "customer" || decoded.subject === "Receptionist"){
+      alert("Unauthorized")
+      window.history.back()
+    }
+
   }
 
   assign(item){

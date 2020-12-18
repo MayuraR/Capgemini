@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StaffService } from '../services/staff.service'
+import { StaffService } from '../services/staff.service';
+import { AuthserviceService } from '../auth/authservice.service'
 
 @Component({
   selector: 'app-staff',
@@ -9,22 +10,29 @@ import { StaffService } from '../services/staff.service'
 export class StaffComponent implements OnInit {
 
   staff:any;
-  addData:any={};
+  addData:any={"gender" : "Female"};
   updateData:any={};
   getData:any={}
 
-  constructor( private _staffService : StaffService) { }
+  constructor( private _staffService : StaffService, private _auth : AuthserviceService) { }
 
   ngOnInit(): void {
+    let decoded:any =this._auth.getRole(this._auth.getToken())
+    if (decoded.subject === "customer" || decoded.subject === "Receptionist"){
+      alert("Unauthorized")
+      window.history.back()
+    }else{
     this._staffService.getAllStaff()
       .subscribe(
         res =>{
           this.staff = res
         },
         err =>{
-          console.log(err)
+          alert(err)
+          window.history.back()
         }
       )
+    }
       
   }
 
@@ -41,7 +49,7 @@ export class StaffComponent implements OnInit {
         console.log(res);
       },
       err => {
-        console.log(err.message)
+        alert(err.message)
       }
     )
   }
@@ -71,12 +79,12 @@ export class StaffComponent implements OnInit {
                 this.staff = res;
               },
               err =>{
-                console.log(err)
+                alert(err)
               }
             )
          },
          err =>{
-           console.log(err)
+           alert(err)
          }
        )
   }
