@@ -60,31 +60,44 @@ const Bill = require('../Models/Bill');
 //methods: ADD, GET
 
 //swagger for get
+
+ /**
+  * 
+  * components:
+  *  securitySchemes:
+  *      bearerAuth:
+  *          type: http
+  *          schemes: bearer
+  *          bearerFormat: JWT
+  *  security:
+  *     bearerAuth: []
+  */
+
  /**
   * @swagger
   * /bill/{memberId}:
   *  get:
   *   summary: get member by id
- *   description: create team
- *   parameters:
- *    - in: path
- *      name: memberId
- *      schema:
- *       type: string
- *      required: true
- *   responses:
- *    200:
- *     description: success
- *    500:
- *     description: error
- *   securitySchemes:
- *    bearerAuth:            # arbitrary name for the security scheme
- *     type: http
- *     scheme: bearer
- *     bearerFormat: JWT 
- * security:
-  - bearerAuth: []   
- */
+  *   security:
+  *    - bearerAuth: []
+  *   description: create team
+  *   parameters:
+  *    - in: path
+  *      name: memberId
+  *      schema:
+  *       type: string
+  *      required: true
+  *    - in: header
+  *      name: authorization
+  *      description: an authorization header
+  *      required: true
+  *      type: string
+  *   responses:
+  *    200:
+  *     description: success
+  *    500:
+  *     description: error
+  */
 
 //Get bill by customer id
 app.get('/bill/:memberId', requireAuth, authRole(['Manager','Owner','Receptionist']),(req, res) =>{

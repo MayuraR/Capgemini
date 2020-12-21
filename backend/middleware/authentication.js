@@ -15,6 +15,7 @@ const requireAuth = (req, res, next) => {
   }
   r = payload.subject
   console.log(r)
+  console.log(token)
   next()
 };
 
